@@ -22,4 +22,5 @@ steps:
 
 - script: |
     markdown-pdf README.md
+    ls -al
   displayName: 'npm convert'
