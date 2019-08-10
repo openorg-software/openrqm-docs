@@ -5,6 +5,7 @@
 
 trigger:
 - master
+- development
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -24,3 +25,15 @@ steps:
     markdown-pdf README.md
     ls -al
   displayName: 'npm convert'
+
+- task: GithubRelease@0 
+displayName: 'Create GitHub Release'      
+inputs:
+  gitHubConnection: benjaminSchilling33
+  repositoryName: openrqm/openrqm-docs
+  action: edit
+  tagSource: manual
+  tag: $(Build.SourceBranchName)  
+  assetUploadMode: replace
+  assets: |
+        $(Build.Repository.LocalPath)/README.pdf
