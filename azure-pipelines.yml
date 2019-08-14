@@ -1,0 +1,40 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+- development
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install -g markdown-pdf
+  displayName: 'npm install dependencies'
+
+
+- script: |
+    markdown-pdf README.md
+    ls -al
+  displayName: 'npm convert'
+
+- task: GithubRelease@0 
+  condition: or(and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')), and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/development')))
+  displayName: 'Create GitHub Release'      
+  inputs:
+    gitHubConnection: benjaminSchilling33
+    repositoryName: openrqm/openrqm-docs
+    action: edit
+    tagSource: manual
+    tag: $(Build.SourceBranchName)  
+    assetUploadMode: replace
+    assets: |
+        $(Build.Repository.LocalPath)/README.pdf
