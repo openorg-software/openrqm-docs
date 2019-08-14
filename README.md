@@ -17,6 +17,7 @@ The OpenRQM project specifies only the REST API and provides a server and client
 
 This way many different implementations can be created which are interoperable.
 
+```plantuml
 @startuml
 caption OpenRQM Deployment Diagram
 
@@ -50,5 +51,6 @@ c --( api
 c2 --( api
 
 @enduml
+```
 
 ## API specification
