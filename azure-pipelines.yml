@@ -16,13 +16,15 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+# Install tools required to convert markdown to PDF
 - script: |
-    npm install -g markdown-pdf
-  displayName: 'npm install dependencies'
+    apt-get install pandoc
+    npm install -g pandoc-plantuml
+  displayName: 'install required tools'
 
 
 - script: |
-    markdown-pdf README.md
+    pandoc -t pdf -F pandoc-plantuml -o README.pdf README.md
     ls -al
   displayName: 'npm convert'
 
