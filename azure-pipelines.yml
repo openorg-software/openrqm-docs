@@ -18,13 +18,13 @@ steps:
 
 # Install tools required to convert markdown to PDF
 - script: |
-    sudo apt-get install pandoc
+    sudo apt-get install pandoc texlive
     npm install -g pandoc-plantuml
   displayName: 'install required tools'
 
 
 - script: |
-    pandoc -t pdf -F pandoc-plantuml -o README.pdf README.md
+    pandoc -F pandoc-plantuml -o README.pdf README.md
     ls -al
   displayName: 'npm convert'
 
