@@ -18,7 +18,7 @@ steps:
 
 # Install tools required to convert markdown to PDF
 - script: |
-    apt-get install pandoc
+    sudo apt-get install pandoc
     npm install -g pandoc-plantuml
   displayName: 'install required tools'
 
