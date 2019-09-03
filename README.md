@@ -1,6 +1,6 @@
 # OpenRQM System Architecture
 
-This repository contains the architecture of the OpenRQM System.
+This repository contains the architecture of the OpenRQM (**open** source **r**e**q**uirement **m**anagement) System.
 
 
 
