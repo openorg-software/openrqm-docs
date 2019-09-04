@@ -1,7 +1,6 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+# OpenRQM Docs
+# Installs node.js and the required tools to generate PDFs from the Markdown documentation.
+# Downloads the swagger codegen and generates the spring boot server and dart client stubs
 
 trigger:
 - master
@@ -36,15 +35,15 @@ steps:
     java -jar swagger-codegen-cli.jar generate \
       -i api/swagger.json \
       -l spring \
-      -o generated/java/
+      -o generated/spring/
+    cd generated/spring/
+    tar -czf spring.tar.gz *
+    cd ../..
     java -jar swagger-codegen-cli.jar generate \
       -i api/swagger.json \
       -l dart \
       -o generated/dart/
-    cd generated/java
-    tar -czf spring.tar.gz *
-    cd ..
-    cd dart
+    cd generated/dart/
     tar -czf dart.tar.gz *
     cd ../..
   displayName: 'Swagger Codegen'
