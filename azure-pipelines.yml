@@ -29,6 +29,27 @@ steps:
   displayName: 'pandoc convert'
 
 - script: |
+    wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.8/swagger-codegen-cli-2.4.8.jar -O swagger-codegen-cli.jar
+    mkdir generated/
+    mkdir generated/spring/
+    mkdir generated/dart/
+    java -jar swagger-codegen-cli.jar generate \
+      -i api/swagger.json \
+      -l spring \
+      -o generated/java/
+    java -jar swagger-codegen-cli.jar generate \
+      -i api/swagger.json \
+      -l dart \
+      -o generated/dart/
+    cd generated/java
+    tar -czf spring.tar.gz *
+    cd ..
+    cd dart
+    tar -czf dart.tar.gz *
+    cd ../..
+  displayName: 'Swagger Codegen'
+
+- script: |
     echo '##vso[task.setvariable variable=releasetag]release'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   displayName: 'Set Release Tag if master branch'
@@ -50,3 +71,5 @@ steps:
     assetUploadMode: replace
     assets: |
         $(Build.Repository.LocalPath)/README.pdf
+        $(Build.Repository.LocalPath)/generated/spring/spring.tar.gz
+        $(Build.Repository.LocalPath)/generated/dart/dart.tar.gz
