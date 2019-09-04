@@ -1,35 +1,30 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "This is the OpenRQM API specification.\n[http://swagger.io](http://swagger.io) or on \n[irc.freenode.net, #swagger](http://swagger.io/irc/).\n",
+    "description" : "This is the OpenRQM API specification.\n[OpenRQM Docs - Github](https://github.com/openrqm/openrqm-docs)\n",
     "version" : "1.0.0",
     "title" : "OpenRQM",
-    "termsOfService" : "http://swagger.io/terms/",
-    "contact" : {
-      "email" : "apiteam@swagger.io"
-    },
     "license" : {
       "name" : "Apache 2.0",
       "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
+  },
+  "externalDocs" : {
+    "description" : "Find out more about OpenRQM",
+    "url" : "https://github.com/openrqm/openrqm-docs"
   },
   "tags" : [ {
     "name" : "workspaces",
     "description" : "Operations for multiple workspaces"
   }, {
     "name" : "workspace",
-    "description" : "Everything about single requirements",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://swagger.io"
-    }
+    "description" : "Everything about single requirements"
+  }, {
+    "name" : "documents",
+    "description" : "Operations about multiple documents"
   }, {
     "name" : "document",
-    "description" : "Operations about user",
-    "externalDocs" : {
-      "description" : "Find out more about our store",
-      "url" : "http://swagger.io"
-    }
+    "description" : "Operations about single documents"
   }, {
     "name" : "elements",
     "description" : "Everything about multiple requirements"
@@ -42,131 +37,53 @@
       "get" : {
         "tags" : [ "workspaces" ],
         "summary" : "Get all workspaces",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Pet object that needs to be added to the store",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Workspace"
-          }
-        } ],
         "responses" : {
           "200" : {
-            "description" : "All workspaces sucessfully fetched"
+            "description" : "All workspaces were fetched sucessfully",
+            "schema" : {
+              "$ref" : "#/definitions/Workspaces"
+            }
           }
         }
       }
     },
     "/workspace" : {
-      "post" : {
+      "get" : {
         "tags" : [ "workspace" ],
-        "summary" : "Add a new workspace",
-        "operationId" : "addWorkspace",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Pet object that needs to be added to the store",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Workspace"
-          }
-        } ],
+        "summary" : "Get a workspace",
+        "operationId" : "getWorkspace",
         "responses" : {
-          "405" : {
-            "description" : "Invalid input"
+          "200" : {
+            "description" : "The workspace was fetched successfully",
+            "schema" : {
+              "$ref" : "#/definitions/Workspace"
+            }
           }
-        },
-        "security" : [ {
-          "openrqm_auth" : [ "write:pets", "read:pets" ]
-        } ]
-      },
-      "put" : {
-        "tags" : [ "workspace" ],
-        "summary" : "Update an existing pet",
-        "operationId" : "updateWorkspace",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Pet object that needs to be added to the store",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Workspace"
-          }
-        } ],
+        }
+      }
+    },
+    "/documents" : {
+      "get" : {
+        "tags" : [ "documents" ],
         "responses" : {
-          "400" : {
-            "description" : "Invalid ID supplied"
-          },
-          "404" : {
-            "description" : "Pet not found"
-          },
-          "405" : {
-            "description" : "Validation exception"
+          "200" : {
+            "description" : "Documents sucessfully fetche",
+            "schema" : {
+              "$ref" : "#/definitions/Documents"
+            }
           }
-        },
-        "security" : [ {
-          "openrqm_auth" : [ "write:pets", "read:pets" ]
-        } ]
+        }
       }
     },
     "/document" : {
-      "post" : {
-        "tags" : [ "document" ],
-        "consumes" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Pet object that needs to be added to the store",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Document"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Document successfully created"
-          }
-        }
-      },
-      "put" : {
-        "tags" : [ "document" ],
-        "consumes" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Pet object that needs to be added to the store",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Document"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Document successfully updated"
-          }
-        }
-      },
       "get" : {
         "tags" : [ "document" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Pet object that needs to be added to the store",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Document"
-          }
-        } ],
         "responses" : {
           "200" : {
-            "description" : "Document successfully fetched"
+            "description" : "Document successfully fetched",
+            "schema" : {
+              "$ref" : "#/definitions/Document"
+            }
           }
         }
       }
@@ -174,36 +91,31 @@
     "/elements" : {
       "get" : {
         "tags" : [ "elements" ],
-        "produces" : [ "application/json" ],
         "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Multiple requirements",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Elements"
-          }
+          "in" : "query",
+          "name" : "documentid",
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The document id for which the elements are fetched"
         } ],
         "responses" : {
           "200" : {
-            "description" : "Elements successfully fetched"
+            "description" : "Elements successfully fetched",
+            "schema" : {
+              "$ref" : "#/definitions/Elements"
+            }
           }
         }
       }
     }
   },
-  "securityDefinitions" : {
-    "openrqm_auth" : {
-      "type" : "oauth2",
-      "authorizationUrl" : "http://petstore.swagger.io/oauth/dialog",
-      "flow" : "implicit",
-      "scopes" : {
-        "write:pets" : "modify pets in your account",
-        "read:pets" : "read your pets"
-      }
-    }
-  },
   "definitions" : {
+    "Workspaces" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Workspace"
+      }
+    },
     "Workspace" : {
       "type" : "object",
       "properties" : {
@@ -218,6 +130,12 @@
           "type" : "integer",
           "format" : "int64"
         }
+      }
+    },
+    "Documents" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Document"
       }
     },
     "Document" : {
@@ -326,11 +244,7 @@
       }
     }
   },
-  "externalDocs" : {
-    "description" : "Find out more about Swagger",
-    "url" : "http://swagger.io"
-  },
   "host" : "virtserver.swaggerhub.com",
-  "schemes" : [ "https", "http" ],
-  "basePath" : "/benjaminSchilling33/OpenRQM/1.0.0"
+  "basePath" : "/benjaminSchilling33/OpenRQM/1.0.0",
+  "schemes" : [ "https" ]
 }
