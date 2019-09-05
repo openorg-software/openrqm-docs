@@ -107,6 +107,106 @@
           }
         }
       }
+    },
+    "/element" : {
+      "post" : {
+        "tags" : [ "element" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "element",
+          "description" : "The element to create",
+          "schema" : {
+            "$ref" : "#/definitions/Element"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Adding new element successfull"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "element" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "element",
+          "description" : "The element to update",
+          "schema" : {
+            "type" : "object",
+            "required" : [ "id" ],
+            "properties" : {
+              "id" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "document_id" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "element_type_id" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "content" : {
+                "type" : "string"
+              },
+              "rank" : {
+                "type" : "string"
+              },
+              "parent_element_id" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Updating element successfull"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "element" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "element",
+          "description" : "The element to update",
+          "schema" : {
+            "type" : "object",
+            "required" : [ "id" ],
+            "properties" : {
+              "id" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "document_id" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "element_type_id" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "content" : {
+                "type" : "string"
+              },
+              "rank" : {
+                "type" : "string"
+              },
+              "parent_element_id" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Updating element successfull"
+          }
+        }
+      }
     }
   },
   "definitions" : {
