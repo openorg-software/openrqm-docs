@@ -41,7 +41,7 @@
           "200" : {
             "description" : "All workspaces were fetched sucessfully",
             "schema" : {
-              "$ref" : "#/definitions/Workspaces"
+              "$ref" : "#/definitions/RQMWorkspaces"
             }
           }
         }
@@ -56,7 +56,7 @@
           "200" : {
             "description" : "The workspace was fetched successfully",
             "schema" : {
-              "$ref" : "#/definitions/Workspace"
+              "$ref" : "#/definitions/RQMWorkspace"
             }
           }
         }
@@ -69,7 +69,7 @@
           "200" : {
             "description" : "Documents sucessfully fetche",
             "schema" : {
-              "$ref" : "#/definitions/Documents"
+              "$ref" : "#/definitions/RQMDocuments"
             }
           }
         }
@@ -82,7 +82,7 @@
           "200" : {
             "description" : "Document successfully fetched",
             "schema" : {
-              "$ref" : "#/definitions/Document"
+              "$ref" : "#/definitions/RQMDocument"
             }
           }
         }
@@ -102,7 +102,7 @@
           "200" : {
             "description" : "Elements successfully fetched",
             "schema" : {
-              "$ref" : "#/definitions/Elements"
+              "$ref" : "#/definitions/RQMElements"
             }
           }
         }
@@ -116,7 +116,7 @@
           "name" : "element",
           "description" : "The element to create",
           "schema" : {
-            "$ref" : "#/definitions/Element"
+            "$ref" : "#/definitions/RQMElement"
           }
         } ],
         "responses" : {
@@ -132,32 +132,7 @@
           "name" : "element",
           "description" : "The element to update",
           "schema" : {
-            "type" : "object",
-            "required" : [ "id" ],
-            "properties" : {
-              "id" : {
-                "type" : "integer",
-                "format" : "int64"
-              },
-              "document_id" : {
-                "type" : "integer",
-                "format" : "int64"
-              },
-              "element_type_id" : {
-                "type" : "integer",
-                "format" : "int64"
-              },
-              "content" : {
-                "type" : "string"
-              },
-              "rank" : {
-                "type" : "string"
-              },
-              "parent_element_id" : {
-                "type" : "integer",
-                "format" : "int64"
-              }
-            }
+            "$ref" : "#/definitions/RQMElement"
           }
         } ],
         "responses" : {
@@ -173,32 +148,7 @@
           "name" : "element",
           "description" : "The element to update",
           "schema" : {
-            "type" : "object",
-            "required" : [ "id" ],
-            "properties" : {
-              "id" : {
-                "type" : "integer",
-                "format" : "int64"
-              },
-              "document_id" : {
-                "type" : "integer",
-                "format" : "int64"
-              },
-              "element_type_id" : {
-                "type" : "integer",
-                "format" : "int64"
-              },
-              "content" : {
-                "type" : "string"
-              },
-              "rank" : {
-                "type" : "string"
-              },
-              "parent_element_id" : {
-                "type" : "integer",
-                "format" : "int64"
-              }
-            }
+            "$ref" : "#/definitions/RQMElement"
           }
         } ],
         "responses" : {
@@ -210,13 +160,13 @@
     }
   },
   "definitions" : {
-    "Workspaces" : {
+    "RQMWorkspaces" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/Workspace"
+        "$ref" : "#/definitions/RQMWorkspace"
       }
     },
-    "Workspace" : {
+    "RQMWorkspace" : {
       "type" : "object",
       "properties" : {
         "id" : {
@@ -232,13 +182,13 @@
         }
       }
     },
-    "Documents" : {
+    "RQMDocuments" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/Document"
+        "$ref" : "#/definitions/RQMDocument"
       }
     },
-    "Document" : {
+    "RQMDocument" : {
       "type" : "object",
       "properties" : {
         "id" : {
@@ -310,7 +260,7 @@
         }
       }
     },
-    "Element" : {
+    "RQMElement" : {
       "type" : "object",
       "properties" : {
         "id" : {
@@ -337,10 +287,10 @@
         }
       }
     },
-    "Elements" : {
+    "RQMElements" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/Element"
+        "$ref" : "#/definitions/RQMElement"
       }
     }
   },
