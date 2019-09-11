@@ -57,7 +57,7 @@ c2 --( api
 
 ## Reference Implementation Technology Stack
 
-```puml
+```plantuml
 @startuml
 caption Reference Implementation Technology Stack
 skinparam monochrome true
