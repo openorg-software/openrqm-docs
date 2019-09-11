@@ -1,7 +1,6 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+# OpenRQM Docs
+# Installs node.js and the required tools to generate PDFs from the Markdown documentation.
+# Downloads the swagger codegen and generates the spring boot server and dart client stubs
 
 trigger:
 - master
@@ -29,6 +28,27 @@ steps:
   displayName: 'pandoc convert'
 
 - script: |
+    wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.8/swagger-codegen-cli-2.4.8.jar -O swagger-codegen-cli.jar
+    mkdir generated/
+    mkdir generated/spring/
+    mkdir generated/dart/
+    java -jar swagger-codegen-cli.jar generate \
+      -i api/swagger.json \
+      -l spring \
+      -o generated/spring/
+    cd generated/spring/
+    tar -czf spring.tar.gz *
+    cd ../..
+    java -jar swagger-codegen-cli.jar generate \
+      -i api/swagger.json \
+      -l dart \
+      -o generated/dart/
+    cd generated/dart/
+    tar -czf dart.tar.gz *
+    cd ../..
+  displayName: 'Swagger Codegen'
+
+- script: |
     echo '##vso[task.setvariable variable=releasetag]release'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   displayName: 'Set Release Tag if master branch'
@@ -50,3 +70,5 @@ steps:
     assetUploadMode: replace
     assets: |
         $(Build.Repository.LocalPath)/README.pdf
+        $(Build.Repository.LocalPath)/generated/spring/spring.tar.gz
+        $(Build.Repository.LocalPath)/generated/dart/dart.tar.gz
