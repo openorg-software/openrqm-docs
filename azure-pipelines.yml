@@ -42,7 +42,8 @@ steps:
     java -jar swagger-codegen-cli.jar generate \
       -i api/swagger.json \
       -l dart \
-      -o generated/dart/
+      -o generated/dart/ \
+      -c api/dart-config.json
     cd generated/dart/
     tar -czf dart.tar.gz *
     cd ../..
