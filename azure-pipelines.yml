@@ -21,14 +21,29 @@ steps:
     npm install -g pandoc-plantuml
   displayName: 'install required tools'
 
-
+# Convert the README
 - script: |
     pandoc -F pandoc-plantuml -o README.pdf README.md
     ls -al
   displayName: 'pandoc convert'
 
+# install & prepare the Dart SDK
+- script: |
+    sudo apt-get update
+    sudo apt-get install apt-transport-https
+    sudo sh -c 'curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
+    sudo sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
+    sudo apt-get update
+    sudo apt-get install dart
+  displayName: 'Prepare Dart SDK'
+
+# install the swagger-codegen, generate the java spring code and archive it, generate the dart code and publish it to pub
 - script: |
     wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.8/swagger-codegen-cli-2.4.8.jar -O swagger-codegen-cli.jar
+    echo "Java Options"
+    java -jar swagger-codegen-cli.jar config-help -l spring
+    echo "dart options"
+    java -jar swagger-codegen-cli.jar config-help -l dart
     mkdir generated/
     mkdir generated/spring/
     mkdir generated/dart/
@@ -45,7 +60,9 @@ steps:
       -o generated/dart/ \
       -c api/dart-config.json
     cd generated/dart/
-    tar -czf dart.tar.gz *
+    export PATH="$PATH":"$HOME/.pub-cache/bin"
+    export PATH="$PATH":/usr/lib/dart/bin/
+    pub publish --dry-run
     cd ../..
   displayName: 'Swagger Codegen'
 
@@ -55,7 +72,7 @@ steps:
   displayName: 'Set Release Tag if master branch'
 
 - script: |
-    echo '##vso[task.setvariable variable=releasetag]development'
+    echo '##vso[task.setvariable variable=releasetag]latest'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/development')
   displayName: 'Set Release Tag if development branch'
 
@@ -72,4 +89,3 @@ steps:
     assets: |
         $(Build.Repository.LocalPath)/README.pdf
         $(Build.Repository.LocalPath)/generated/spring/spring.tar.gz
-        $(Build.Repository.LocalPath)/generated/dart/dart.tar.gz
