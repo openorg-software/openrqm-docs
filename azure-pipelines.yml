@@ -35,8 +35,6 @@ steps:
     sudo sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
     sudo apt-get update
     sudo apt-get install dart
-    export PATH="$PATH":"$HOME/.pub-cache/bin"
-    export PATH="$PATH":/usr/lib/dart/bin/
   displayName: 'Prepare Dart SDK'
 
 # install the swagger-codegen, generate the java spring code and archive it, generate the dart code and publish it to pub
@@ -61,6 +59,8 @@ steps:
       -l dart \
       -o generated/dart/
     cd generated/dart/
+    export PATH="$PATH":"$HOME/.pub-cache/bin"
+    export PATH="$PATH":/usr/lib/dart/bin/
     pub publish --dry-run
     cd ../..
   displayName: 'Swagger Codegen'
