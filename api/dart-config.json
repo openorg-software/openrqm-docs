@@ -1,0 +1,10 @@
+{
+    "sortParamsByRequiredFlag": true,
+    "ensureUniqueParams": true,
+    "allowUnicodeIdentifiers": false,
+    "browserClient": false,
+    "pubName": "openrqm",
+    "pubVersion": "0.1",
+    "pubDescription": "OpenRQM API",
+    "useEnumExtension": false
+}
