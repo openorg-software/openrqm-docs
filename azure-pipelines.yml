@@ -24,7 +24,6 @@ steps:
 # Convert the README
 - script: |
     pandoc -F pandoc-plantuml -o README.pdf README.md
-    ls -al
   displayName: 'pandoc convert'
 
 # install & prepare the Dart SDK
@@ -62,6 +61,7 @@ steps:
     cd generated/dart/
     export PATH="$PATH":"$HOME/.pub-cache/bin"
     export PATH="$PATH":/usr/lib/dart/bin/
+    wget -O LICENSE https://spdx.org/licenses/LGPL-2.0-only.html#licenseText
     pub publish --dry-run
     cd ../..
   displayName: 'Swagger Codegen'
