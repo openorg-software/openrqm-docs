@@ -48,7 +48,7 @@ steps:
       -l dart \
       -o generated/dart/
     cd generated/dart/
-    tar -czf dart.tar.gz *
+    pub publish --dry-run
     cd ../..
   displayName: 'Swagger Codegen'
 
@@ -75,4 +75,3 @@ steps:
     assets: |
         $(Build.Repository.LocalPath)/README.pdf
         $(Build.Repository.LocalPath)/generated/spring/spring.tar.gz
-        $(Build.Repository.LocalPath)/generated/dart/dart.tar.gz
