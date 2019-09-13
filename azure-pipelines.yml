@@ -30,9 +30,9 @@ steps:
 - script: |
     wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.8/swagger-codegen-cli-2.4.8.jar -O swagger-codegen-cli.jar
     echo "Java Options"
-    java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar config-help -l spring
+    java -jar swagger-codegen-cli.jar config-help -l spring
     echo "dart options"
-    java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar config-help -l dart
+    java -jar swagger-codegen-cli.jar config-help -l dart
     mkdir generated/
     mkdir generated/spring/
     mkdir generated/dart/
