@@ -4,7 +4,7 @@
     "allowUnicodeIdentifiers": false,
     "browserClient": false,
     "pubName": "openrqm",
-    "pubVersion": "0.1",
+    "pubVersion": "1.0.0",
     "pubDescription": "OpenRQM API",
     "useEnumExtension": false
 }
