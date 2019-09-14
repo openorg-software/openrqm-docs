@@ -60,6 +60,10 @@ steps:
       -l dart \
       -o generated/dart/ \
       -c api/dart-config.json
+  displayName: 'dart Swagger Codegen'
+
+# publish dart code to pub
+- script: |
     cd generated/dart/
     export PATH="$PATH":"$HOME/.pub-cache/bin"
     export PATH="$PATH":/usr/lib/dart/bin/
@@ -69,9 +73,10 @@ steps:
     echo "homepage: https://github.com/openrqm/openrqm-docs " >> pubspec.yaml 
     echo "environment:" >> pubspec.yaml 
     echo "  sdk: '>=2.0.0 <3.0.0'" >> pubspec.yaml 
+    mv -r docs doc
     pub publish --dry-run
     cd ../..
-  displayName: 'dart Swagger Codegen & publish'
+  displayName: 'pub publish'
 
 # Install tools required to convert markdown to PDF
 - script: |
