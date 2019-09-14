@@ -73,7 +73,7 @@ steps:
     echo "homepage: https://github.com/openrqm/openrqm-docs " >> pubspec.yaml 
     echo "environment:" >> pubspec.yaml 
     echo "  sdk: '>=2.0.0 <3.0.0'" >> pubspec.yaml 
-    mv -r docs doc
+    mv docs doc
     pub publish --dry-run
     cd ../..
   displayName: 'pub publish'
