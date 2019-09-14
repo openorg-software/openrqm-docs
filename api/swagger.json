@@ -5,8 +5,8 @@
     "version" : "1.0.0",
     "title" : "OpenRQM",
     "license" : {
-      "name" : "Apache 2.0",
-      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+      "name" : "LGPL-2.0-only",
+      "url" : "https://spdx.org/licenses/LGPL-2.0-only.html#licenseText"
     }
   },
   "externalDocs" : {
@@ -37,6 +37,7 @@
       "get" : {
         "tags" : [ "workspaces" ],
         "summary" : "Get all workspaces",
+        "operationId" : "getWorkspaces",
         "responses" : {
           "200" : {
             "description" : "All workspaces were fetched sucessfully",
@@ -65,6 +66,8 @@
     "/documents" : {
       "get" : {
         "tags" : [ "documents" ],
+        "summary" : "Get all documents",
+        "operationId" : "getDocuments",
         "responses" : {
           "200" : {
             "description" : "Documents sucessfully fetche",
@@ -78,6 +81,8 @@
     "/document" : {
       "get" : {
         "tags" : [ "document" ],
+        "summary" : "Get a document",
+        "operationId" : "getDocument",
         "responses" : {
           "200" : {
             "description" : "Document successfully fetched",
@@ -91,6 +96,8 @@
     "/elements" : {
       "get" : {
         "tags" : [ "elements" ],
+        "summary" : "Get all elements",
+        "operationId" : "getElements",
         "parameters" : [ {
           "in" : "query",
           "name" : "documentid",
@@ -111,6 +118,8 @@
     "/element" : {
       "post" : {
         "tags" : [ "element" ],
+        "summary" : "Add an element",
+        "operationId" : "postElement",
         "parameters" : [ {
           "in" : "body",
           "name" : "element",
@@ -127,6 +136,8 @@
       },
       "put" : {
         "tags" : [ "element" ],
+        "summary" : "Update an element",
+        "operationId" : "putElement",
         "parameters" : [ {
           "in" : "body",
           "name" : "element",
@@ -143,6 +154,8 @@
       },
       "patch" : {
         "tags" : [ "element" ],
+        "summary" : "Update an element",
+        "operationId" : "patchElement",
         "parameters" : [ {
           "in" : "body",
           "name" : "element",
