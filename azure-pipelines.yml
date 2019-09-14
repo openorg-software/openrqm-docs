@@ -28,13 +28,22 @@ steps:
 # install the swagger-codegen, generate the java spring code and archive it, generate the dart code and publish it to pub
 - script: |
     wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.8/swagger-codegen-cli-2.4.8.jar -O swagger-codegen-cli.jar
+  displayName: 'Swagger Codegen install'
+# show code generation options
+- script: |
     echo "Java Options"
     java -jar swagger-codegen-cli.jar config-help -l spring
     echo "dart options"
     java -jar swagger-codegen-cli.jar config-help -l dart
+  displayName: 'Show Swagger Codegen options'
+# create directories for generated code
+- script: |
     mkdir generated/
     mkdir generated/spring/
     mkdir generated/dart/
+  displayName: 'create directories for generated code'
+# generate java spring code
+- script: |
     java -jar swagger-codegen-cli.jar generate \
       -i api/swagger.json \
       -l spring \
@@ -42,6 +51,10 @@ steps:
     cd generated/spring/
     tar -czf spring.tar.gz *
     cd ../..
+  displayName: 'spring Swagger Codegen '
+  
+# generate dart client code and publish to pub
+- script: |
     java -jar swagger-codegen-cli.jar generate \
       -i api/swagger.json \
       -l dart \
@@ -51,18 +64,14 @@ steps:
     export PATH="$PATH":"$HOME/.pub-cache/bin"
     export PATH="$PATH":/usr/lib/dart/bin/
     wget -O LICENSE https://spdx.org/licenses/LGPL-2.0-only.html#licenseText
-    echo "### printing pubspec###"
-    cat pubspec.yaml
     echo "authors:" >> pubspec.yaml
     echo "  - Benjamin Schilling <benjamin.a.schilling@freenet.de>" >> pubspec.yaml 
     echo "homepage: https://github.com/openrqm/openrqm-docs " >> pubspec.yaml 
     echo "environment:" >> pubspec.yaml 
     echo "  sdk: '>=2.0.0 <3.0.0'" >> pubspec.yaml 
-    echo "### printing pubspec###"
-    cat pubspec.yaml
     pub publish --dry-run
     cd ../..
-  displayName: 'Swagger Codegen & publish'
+  displayName: 'dart Swagger Codegen & publish'
 
 # Install tools required to convert markdown to PDF
 - script: |
