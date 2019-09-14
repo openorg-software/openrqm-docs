@@ -51,6 +51,11 @@ steps:
     export PATH="$PATH":"$HOME/.pub-cache/bin"
     export PATH="$PATH":/usr/lib/dart/bin/
     wget -O LICENSE https://spdx.org/licenses/LGPL-2.0-only.html#licenseText
+    echo "authors: \
+        - Benjamin Schilling <benjamin.a.schilling@freenet.de> \
+        homepage: https://github.com/openrqm/openrqm-docs \
+        environment: \
+          sdk: '>=2.0.0 <3.0.0'" >> pubspec.yml 
     pub publish --dry-run
     cd ../..
   displayName: 'Swagger Codegen & publish'
