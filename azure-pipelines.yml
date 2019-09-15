@@ -74,9 +74,9 @@ steps:
     echo "environment:" >> pubspec.yaml 
     echo "  sdk: '>=2.0.0 <3.0.0'" >> pubspec.yaml 
     mv docs doc
-    pub publish
+    tar -czf dart.tar.gz *
     cd ../..
-  displayName: 'pub publish'
+  displayName: 'create dart archive'
 
 # Install tools required to convert markdown to PDF
 - script: |
@@ -112,3 +112,4 @@ steps:
     assets: |
         $(Build.Repository.LocalPath)/ARCHITECTURE.pdf
         $(Build.Repository.LocalPath)/generated/spring/spring.tar.gz
+        $(Build.Repository.LocalPath)/generated/dart/dart.tar.gz
