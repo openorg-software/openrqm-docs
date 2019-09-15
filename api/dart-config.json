@@ -2,7 +2,7 @@
     "sortParamsByRequiredFlag": true,
     "ensureUniqueParams": true,
     "allowUnicodeIdentifiers": false,
-    "browserClient": false,
+    "browserClient": true,
     "pubName": "openrqm",
     "pubVersion": "1.0.0",
     "pubDescription": "OpenRQM API",
