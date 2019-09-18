@@ -2,9 +2,9 @@
     "sortParamsByRequiredFlag": true,
     "ensureUniqueParams": true,
     "allowUnicodeIdentifiers": false,
-    "browserClient": true,
     "pubName": "openrqm",
     "pubVersion": "1.0.2",
     "pubDescription": "OpenRQM API",
-    "useEnumExtension": false
+    "useEnumExtension": false,
+    "supportDart2": true
 }
