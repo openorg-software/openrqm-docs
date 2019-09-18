@@ -73,9 +73,7 @@ steps:
     wget -O LICENSE https://spdx.org/licenses/LGPL-2.0-only.html#licenseText
     echo "authors:" >> pubspec.yaml
     echo "  - Benjamin Schilling <benjamin.a.schilling@freenet.de>" >> pubspec.yaml 
-    echo "homepage: https://github.com/openrqm/openrqm-docs " >> pubspec.yaml 
-    echo "environment:" >> pubspec.yaml 
-    echo "  sdk: '>=2.0.0 <3.0.0'" >> pubspec.yaml 
+    echo "homepage: https://github.com/openrqm/openrqm-docs " >> pubspec.yaml
     mv docs doc
     tar -czf dart.tar.gz *
     cd ../..
