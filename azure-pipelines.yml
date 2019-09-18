@@ -27,14 +27,14 @@ steps:
 
 # install the swagger-codegen, generate the java spring code and archive it, generate the dart code and publish it to pub
 - script: |
-    wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.8/swagger-codegen-cli-2.4.8.jar -O swagger-codegen-cli.jar
+    wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.1.2/openapi-generator-cli-4.1.2.jar -O openapi-generator-cli.jar
   displayName: 'Swagger Codegen install'
 # show code generation options
 - script: |
     echo "Java Options"
-    java -jar swagger-codegen-cli.jar config-help -l spring
+    java -jar openapi-generator-cli.jar config-help -l spring
     echo "dart options"
-    java -jar swagger-codegen-cli.jar config-help -l dart
+    java -jar openapi-generator-cli.jar config-help -l dart
   displayName: 'Show Swagger Codegen options'
 # create directories for generated code
 - script: |
@@ -44,23 +44,23 @@ steps:
   displayName: 'create directories for generated code'
 # generate java spring code
 - script: |
-    java -jar swagger-codegen-cli.jar generate \
+    java -jar openapi-generator-cli.jar generate \
       -i api/swagger.json \
       -l spring \
       -o generated/spring/
     cd generated/spring/
     tar -czf spring.tar.gz *
     cd ../..
-  displayName: 'spring Swagger Codegen '
+  displayName: 'spring OpenAPI Codegen '
   
 # generate dart client code and publish to pub
 - script: |
-    java -jar swagger-codegen-cli.jar generate \
+    java -jar openapi-generator-cli.jar generate \
       -i api/swagger.json \
       -l dart \
       -o generated/dart/ \
       -c api/dart-config.json
-  displayName: 'dart Swagger Codegen'
+  displayName: 'dart OpenAPI Codegen'
 
 # publish dart code to pub
 - script: |
