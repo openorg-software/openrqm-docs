@@ -192,6 +192,18 @@
         "workspace_id" : {
           "type" : "integer",
           "format" : "int64"
+        },
+        "workspaces" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/RQMWorkspace"
+          }
+        },
+        "documents" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/RQMDocument"
+          }
         }
       }
     },
