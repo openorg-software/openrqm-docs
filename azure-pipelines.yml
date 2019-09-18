@@ -33,9 +33,9 @@ steps:
 # show code generation options
 - script: |
     echo "Java Options"
-    java -jar openapi-generator-cli.jar config-help -l spring
+    java -jar openapi-generator-cli.jar config-help -g spring
     echo "dart options"
-    java -jar openapi-generator-cli.jar config-help -l dart
+    java -jar openapi-generator-cli.jar config-help -g dart
   displayName: 'Show OpenAPI Codegen options'
 
 # create directories for generated code
