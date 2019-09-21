@@ -189,7 +189,7 @@
         "name" : {
           "type" : "string"
         },
-        "workspace_id" : {
+        "workspaceId" : {
           "type" : "integer",
           "format" : "int64"
         },
@@ -220,22 +220,22 @@
           "type" : "integer",
           "format" : "int64"
         },
-        "workspace_id" : {
+        "workspaceId" : {
           "type" : "integer",
           "format" : "int64"
         },
-        "internal_identifier" : {
+        "internalIdentifier" : {
           "type" : "integer",
           "format" : "int64"
         },
-        "external_identifier" : {
+        "externalIdentifier" : {
           "type" : "integer",
           "format" : "int64"
         },
         "name" : {
           "type" : "string"
         },
-        "short_name" : {
+        "shortName" : {
           "type" : "string"
         },
         "description" : {
@@ -244,42 +244,42 @@
         "confidentiality" : {
           "type" : "string"
         },
-        "author_id" : {
+        "authorId" : {
           "type" : "integer",
           "format" : "int64"
         },
-        "language_id" : {
+        "languageId" : {
           "type" : "integer",
           "format" : "int64"
         },
-        "approver_id" : {
+        "approverId" : {
           "type" : "integer",
           "format" : "int64"
         },
-        "reviewer_text" : {
+        "reviewerText" : {
           "type" : "string"
         },
-        "last_modified_by_id" : {
+        "lastModifiedById" : {
           "type" : "integer",
           "format" : "int64"
         },
-        "last_modified_on" : {
+        "lastModifiedOn" : {
           "type" : "string",
           "format" : "date-time"
         },
-        "baseline_major" : {
+        "baselineMajor" : {
           "type" : "integer",
           "format" : "int64"
         },
-        "baseline_minor" : {
+        "baselineMinor" : {
           "type" : "integer",
           "format" : "int64"
         },
-        "baseline_review" : {
+        "baselineReview" : {
           "type" : "integer",
           "format" : "int64"
         },
-        "previous_baseline_id" : {
+        "previousBaselineId" : {
           "type" : "integer",
           "format" : "int64"
         }
@@ -292,11 +292,11 @@
           "type" : "integer",
           "format" : "int64"
         },
-        "document_id" : {
+        "documentId" : {
           "type" : "integer",
           "format" : "int64"
         },
-        "element_type_id" : {
+        "elementTypeId" : {
           "type" : "integer",
           "format" : "int64"
         },
@@ -306,7 +306,7 @@
         "rank" : {
           "type" : "string"
         },
-        "parent_element_id" : {
+        "parentElementId" : {
           "type" : "integer",
           "format" : "int64"
         }
