@@ -122,3 +122,5 @@ rectangle server [
 
 ## API specification
 
+If a foreign id is "null" or "0" for a requested entity, it is assumed that there is no referenced entity. This decision was made, because adding "0" to the accepted values simplifies the implementation.
+
