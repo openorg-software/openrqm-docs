@@ -124,3 +124,5 @@ rectangle server [
 
 If a foreign id is "null" or "0" for a requested entity, it is assumed that there is no referenced entity. This decision was made, because adding "0" to the accepted values simplifies the implementation.
 
+
+As the timeformat in the database "Datetime" is used, although is not necessarily stored in UTC. "Timestamp" is not used because of the "Y2K38" problem. This leads to the fact that all times and dates have to be converted to UTC before storing them in the database, in favor of avoiding the Y2K38 problem.
