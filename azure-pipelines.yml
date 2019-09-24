@@ -45,6 +45,7 @@ steps:
     mkdir generated/
     mkdir generated/spring/
     mkdir generated/dart/
+    mkdir generated/typescript-angular/
   displayName: 'create directories for generated code'
 
 # generate java spring code
