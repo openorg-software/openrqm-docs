@@ -36,6 +36,8 @@ steps:
     java -jar openapi-generator-cli.jar config-help -g spring
     echo "dart options"
     java -jar openapi-generator-cli.jar config-help -g dart
+    echo "angular options"
+    java -jar openapi-generator-cli.jar config-help -g typescript-angular
   displayName: 'Show OpenAPI Codegen options'
 
 # create directories for generated code
