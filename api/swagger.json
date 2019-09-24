@@ -130,7 +130,10 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Adding new element successfull"
+            "description" : "The element created by the backend",
+            "schema" : {
+              "$ref" : "#/definitions/RQMElement"
+            }
           }
         }
       },
@@ -230,7 +233,7 @@
         },
         "externalIdentifier" : {
           "type" : "integer",
-          "format" : "int64"
+          "format" : "string"
         },
         "name" : {
           "type" : "string"
@@ -290,11 +293,13 @@
       "properties" : {
         "id" : {
           "type" : "integer",
-          "format" : "int64"
+          "format" : "int64",
+          "description" : "When creating an element the id is ignored by the backend because it generates one, when updating the element it has to be set"
         },
         "documentId" : {
           "type" : "integer",
-          "format" : "int64"
+          "format" : "int64",
+          "description" : "When creating an element the documentId has to be set to assign the requirement to the correct document, it can not be updated."
         },
         "elementTypeId" : {
           "type" : "integer",
@@ -320,6 +325,6 @@
     }
   },
   "host" : "virtserver.swaggerhub.com",
-  "basePath" : "/benjaminSchilling33/OpenRQM/1.0.0",
-  "schemes" : [ "https" ]
+  "schemes" : [ "https" ],
+  "basePath" : "/benjaminSchilling33/OpenRQM/1.0.0"
 }
