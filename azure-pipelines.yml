@@ -36,6 +36,8 @@ steps:
     java -jar openapi-generator-cli.jar config-help -g spring
     echo "dart options"
     java -jar openapi-generator-cli.jar config-help -g dart
+    echo "typescript-angular options"
+    java -jar openapi-generator-cli.jar config-help -g typescript-angular
   displayName: 'Show OpenAPI Codegen options'
 
 # create directories for generated code
@@ -55,7 +57,18 @@ steps:
     tar -czf spring.tar.gz *
     cd ../..
   displayName: 'spring OpenAPI Codegen '
-  
+
+# generate angular code
+- script: |
+    java -jar openapi-generator-cli.jar generate \
+      -i api/swagger.json \
+      -g typescript-angular \
+      -o generated/angular/
+    cd generated/typescript-angular/
+    tar -czf typescript-angular.tar.gz *
+    cd ../..
+  displayName: 'typescript-angular OpenAPI Codegen '
+
 # generate dart client code
 - script: |
     java -jar openapi-generator-cli.jar generate \
@@ -114,3 +127,4 @@ steps:
         $(Build.Repository.LocalPath)/ARCHITECTURE.pdf
         $(Build.Repository.LocalPath)/generated/spring/spring.tar.gz
         $(Build.Repository.LocalPath)/generated/dart/dart.tar.gz
+        $(Build.Repository.LocalPath)/generated/typescript-angular/typescript-angular.tar.gz
