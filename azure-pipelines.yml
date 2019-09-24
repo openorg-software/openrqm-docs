@@ -45,6 +45,7 @@ steps:
     mkdir generated/
     mkdir generated/spring/
     mkdir generated/dart/
+    mkdir generated/typescript-angular/
   displayName: 'create directories for generated code'
 
 # generate java spring code
@@ -63,7 +64,7 @@ steps:
     java -jar openapi-generator-cli.jar generate \
       -i api/swagger.json \
       -g typescript-angular \
-      -o generated/angular/
+      -o generated/typescript-angular/
     cd generated/typescript-angular/
     tar -czf typescript-angular.tar.gz *
     cd ../..
