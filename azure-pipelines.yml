@@ -32,7 +32,7 @@ steps:
 
 # show code generation options
 - script: |
-    echo "Java Options"
+    echo "Java Spring Options"
     java -jar openapi-generator-cli.jar config-help -g spring
     echo "dart options"
     java -jar openapi-generator-cli.jar config-help -g dart
