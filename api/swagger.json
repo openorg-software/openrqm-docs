@@ -172,6 +172,24 @@
             "description" : "Updating element successfull"
           }
         }
+      },
+      "delete" : {
+        "tags" : [ "element" ],
+        "summary" : "Delete an element",
+        "operationId" : "deleteElement",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "element",
+          "description" : "The element to update",
+          "schema" : {
+            "$ref" : "#/definitions/RQMElement"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Deleting element successfull"
+          }
+        }
       }
     }
   },
