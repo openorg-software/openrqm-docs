@@ -1,0 +1,11 @@
+{
+    "sortParamsByRequiredFlag": true,
+    "ensureUniqueParams": true,
+    "allowUnicodeIdentifiers": false,
+    "prependFormOrBodyParameters": false,
+    "modelPropertyNaming": "camelCase",
+    "supportsES6": false,
+    "npmName": "openrqm-api",
+    "npmVersion": "1.0.0"
+
+}

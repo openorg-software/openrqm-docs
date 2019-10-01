@@ -65,6 +65,7 @@ steps:
       -i api/swagger.json \
       -g typescript-angular \
       -o generated/typescript-angular/
+      -c api/angular-config.json
     cd generated/typescript-angular/
     tar -czf typescript-angular.tar.gz *
     cd ../..
