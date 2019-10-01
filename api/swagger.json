@@ -250,8 +250,7 @@
           "format" : "int64"
         },
         "externalIdentifier" : {
-          "type" : "string",
-          "format" : "string"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
