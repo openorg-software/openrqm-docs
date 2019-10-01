@@ -31,6 +31,9 @@
   }, {
     "name" : "element",
     "description" : "Everything about single requirements"
+  }, {
+    "name" : "elementTypes",
+    "description" : "Everything about types of elements"
   } ],
   "paths" : {
     "/workspaces" : {
@@ -191,6 +194,21 @@
           }
         }
       }
+    },
+    "/elementTypes" : {
+      "get" : {
+        "tags" : [ "elementTypes" ],
+        "summary" : "Get all element types",
+        "operationId" : "getElementTypes",
+        "responses" : {
+          "200" : {
+            "description" : "Elements successfully fetched",
+            "schema" : {
+              "$ref" : "#/definitions/RQMElementTypes"
+            }
+          }
+        }
+      }
     }
   },
   "definitions" : {
@@ -338,6 +356,24 @@
       "type" : "array",
       "items" : {
         "$ref" : "#/definitions/RQMElement"
+      }
+    },
+    "RQMElementType" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RQMElementTypes" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/RQMElementType"
       }
     }
   },
