@@ -73,7 +73,7 @@
         "operationId" : "getDocuments",
         "responses" : {
           "200" : {
-            "description" : "Documents sucessfully fetche",
+            "description" : "Documents sucessfully fetched",
             "schema" : {
               "$ref" : "#/definitions/RQMDocuments"
             }
