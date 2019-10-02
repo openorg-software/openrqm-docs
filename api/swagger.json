@@ -379,5 +379,5 @@
   },
   "host" : "virtserver.swaggerhub.com",
   "schemes" : [ "https" ],
-  "basePath" : "/benjaminSchilling33/OpenRQM/1.0.0"
+  "basePath" : "/OpenRQM/OpenRQM/1.0.0"
 }
