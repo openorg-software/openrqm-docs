@@ -64,6 +64,27 @@
             }
           }
         }
+      },
+      "post" : {
+        "tags" : [ "workspace" ],
+        "summary" : "Add a workspace",
+        "operationId" : "postWorkspace",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "workspace",
+          "description" : "The workspace to create",
+          "schema" : {
+            "$ref" : "#/definitions/RQMWorkspace"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The workspace created by the backend",
+            "schema" : {
+              "$ref" : "#/definitions/RQMWorkspace"
+            }
+          }
+        }
       }
     },
     "/documents" : {
@@ -89,6 +110,27 @@
         "responses" : {
           "200" : {
             "description" : "Document successfully fetched",
+            "schema" : {
+              "$ref" : "#/definitions/RQMDocument"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "document" ],
+        "summary" : "Add a document",
+        "operationId" : "postDocument",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "document",
+          "description" : "The document to create",
+          "schema" : {
+            "$ref" : "#/definitions/RQMDocument"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The document created by the backend",
             "schema" : {
               "$ref" : "#/definitions/RQMDocument"
             }
