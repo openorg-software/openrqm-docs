@@ -48,7 +48,7 @@ steps:
     mkdir generated/typescript-angular/
   displayName: 'create directories for generated code'
 
-# generate java spring code
+# generate java spring code and archive
 - script: |
     java -jar openapi-generator-cli.jar generate \
       -i api/swagger.json \
@@ -57,9 +57,9 @@ steps:
     cd generated/spring/
     tar -czf spring.tar.gz *
     cd ../..
-  displayName: 'spring OpenAPI Codegen '
+  displayName: 'spring OpenAPI Codegen and archiving'
 
-# generate angular code
+# generate angular code and archive
 - script: |
     java -jar openapi-generator-cli.jar generate \
       -i api/swagger.json \
@@ -69,7 +69,7 @@ steps:
     cd generated/typescript-angular/
     tar -czf typescript-angular.tar.gz *
     cd ../..
-  displayName: 'typescript-angular OpenAPI Codegen '
+  displayName: 'typescript-angular OpenAPI Codegen and archiving'
 
 # generate dart client code
 - script: |
@@ -78,10 +78,6 @@ steps:
       -g dart \
       -o generated/dart/ \
       -c api/dart-config.json
-  displayName: 'dart OpenAPI Codegen'
-
-# prepare dart code for publishing
-- script: |
     cd generated/dart/
     export PATH="$PATH":"$HOME/.pub-cache/bin"
     export PATH="$PATH":/usr/lib/dart/bin/
@@ -92,7 +88,7 @@ steps:
     mv docs doc
     tar -czf dart.tar.gz *
     cd ../..
-  displayName: 'create dart archive'
+  displayName: 'dart OpenAPI Codegen and archiving'
 
 # Install tools required to convert markdown to PDF
 - script: |
