@@ -1,6 +1,6 @@
 # OpenRQM Docs
 # Installs node.js and the required tools to generate PDFs from the Markdown documentation.
-# Downloads the swagger codegen and generates the spring boot server and dart client stubs
+# Downloads the swagger codegen and generates the spring boot server and dart as well as angular client stubs
 
 trigger:
 - master
