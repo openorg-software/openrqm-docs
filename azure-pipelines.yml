@@ -110,13 +110,8 @@ steps:
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   displayName: 'Set Release Tag if master branch'
 
-- script: |
-    echo '##vso[task.setvariable variable=releasetag]latest'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/development')
-  displayName: 'Set Release Tag if development branch'
-
 - task: GithubRelease@0 
-  condition: or(and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')), and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/development')))
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   displayName: 'Create GitHub Release'      
   inputs:
     gitHubConnection: benjaminSchilling33
