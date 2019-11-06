@@ -156,6 +156,26 @@
             }
           }
         }
+      },
+      "delete" : {
+        "tags" : [ "document" ],
+        "summary" : "Delete a document",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "document",
+          "description" : "The document to delete",
+          "schema" : {
+            "$ref" : "#/definitions/RQMDocument"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The document was deleted successfully",
+            "schema" : {
+              "$ref" : "#/definitions/RQMDocument"
+            }
+          }
+        }
       }
     },
     "/elements" : {
