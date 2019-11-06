@@ -85,6 +85,23 @@
             }
           }
         }
+      },
+      "delete" : {
+        "tags" : [ "workspace" ],
+        "summary" : "Delete a workspace",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "workspace",
+          "description" : "The workspace to delete",
+          "schema" : {
+            "$ref" : "#/definitions/RQMWorkspace"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
       }
     },
     "/documents" : {
