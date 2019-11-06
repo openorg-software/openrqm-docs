@@ -79,7 +79,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "The workspace created by the backend",
+            "description" : "The workspace was created by the backend",
             "schema" : {
               "$ref" : "#/definitions/RQMWorkspace"
             }
@@ -99,7 +99,10 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK"
+            "description" : "The workspace was deleted successfully",
+            "schema" : {
+              "$ref" : "#/definitions/RQMWorkspace"
+            }
           }
         }
       }
