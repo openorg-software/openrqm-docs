@@ -127,6 +127,13 @@
         "tags" : [ "document" ],
         "summary" : "Get a document",
         "operationId" : "getDocument",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "documentId",
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The element above"
+        } ],
         "responses" : {
           "200" : {
             "description" : "Document successfully fetched",
@@ -216,11 +223,13 @@
           "in" : "query",
           "name" : "aboveId",
           "type" : "integer",
+          "format" : "int64",
           "description" : "The element above"
         }, {
           "in" : "query",
           "name" : "belowId",
           "type" : "integer",
+          "format" : "int64",
           "description" : "The element below"
         } ],
         "responses" : {
