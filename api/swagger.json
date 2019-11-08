@@ -86,6 +86,42 @@
           }
         }
       },
+      "put" : {
+        "tags" : [ "workspace" ],
+        "summary" : "Update a workspace",
+        "operationId" : "putWorkspace",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "workspace",
+          "description" : "The workspace to update",
+          "schema" : {
+            "$ref" : "#/definitions/RQMWorkspace"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Updating workspace successfull"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "element" ],
+        "summary" : "Update a workspace",
+        "operationId" : "patchWorkspace",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "workspace",
+          "description" : "The workspace to update",
+          "schema" : {
+            "$ref" : "#/definitions/RQMWorkspace"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Updating workspace successfull"
+          }
+        }
+      },
       "delete" : {
         "tags" : [ "workspace" ],
         "summary" : "Delete a workspace",
