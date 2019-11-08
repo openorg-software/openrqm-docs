@@ -200,6 +200,42 @@
           }
         }
       },
+      "put" : {
+        "tags" : [ "document" ],
+        "summary" : "Update a document",
+        "operationId" : "putDocument",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "document",
+          "description" : "The document to update",
+          "schema" : {
+            "$ref" : "#/definitions/RQMDocument"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Updating document successfull"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "document" ],
+        "summary" : "Update a document",
+        "operationId" : "patchDocument",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "document",
+          "description" : "The document to update",
+          "schema" : {
+            "$ref" : "#/definitions/RQMDocument"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Updating document successfull"
+          }
+        }
+      },
       "delete" : {
         "tags" : [ "document" ],
         "summary" : "Delete a document",
