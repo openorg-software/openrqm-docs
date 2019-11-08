@@ -212,6 +212,16 @@
           "schema" : {
             "$ref" : "#/definitions/RQMElement"
           }
+        }, {
+          "in" : "query",
+          "name" : "aboveId",
+          "type" : "integer",
+          "description" : "The element above"
+        }, {
+          "in" : "query",
+          "name" : "belowId",
+          "type" : "integer",
+          "description" : "The element below"
         } ],
         "responses" : {
           "200" : {
