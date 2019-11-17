@@ -79,10 +79,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "The workspace was created by the backend",
-            "schema" : {
-              "$ref" : "#/definitions/RQMWorkspace"
-            }
+            "description" : "The workspace was created by the backend"
           }
         }
       },
@@ -125,6 +122,7 @@
       "delete" : {
         "tags" : [ "workspace" ],
         "summary" : "Delete a workspace",
+        "operationId" : "deleteWorkspace",
         "parameters" : [ {
           "in" : "body",
           "name" : "workspace",
@@ -135,10 +133,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "The workspace was deleted successfully",
-            "schema" : {
-              "$ref" : "#/definitions/RQMWorkspace"
-            }
+            "description" : "The workspace was deleted successfully"
           }
         }
       }
@@ -193,10 +188,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "The document created by the backend",
-            "schema" : {
-              "$ref" : "#/definitions/RQMDocument"
-            }
+            "description" : "The document created by the backend"
           }
         }
       },
@@ -239,6 +231,7 @@
       "delete" : {
         "tags" : [ "document" ],
         "summary" : "Delete a document",
+        "operationId" : "deleteDocument",
         "parameters" : [ {
           "in" : "body",
           "name" : "document",
@@ -249,10 +242,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "The document was deleted successfully",
-            "schema" : {
-              "$ref" : "#/definitions/RQMDocument"
-            }
+            "description" : "The document was deleted successfully"
           }
         }
       }
@@ -306,10 +296,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "The element created by the backend",
-            "schema" : {
-              "$ref" : "#/definitions/RQMElement"
-            }
+            "description" : "The element created by the backend"
           }
         }
       },
