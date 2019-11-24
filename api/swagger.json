@@ -124,12 +124,11 @@
         "summary" : "Delete a workspace",
         "operationId" : "deleteWorkspace",
         "parameters" : [ {
-          "in" : "body",
-          "name" : "workspace",
-          "description" : "The workspace to delete",
-          "schema" : {
-            "$ref" : "#/definitions/RQMWorkspace"
-          }
+          "in" : "query",
+          "name" : "workspaceId",
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The workspace to delete"
         } ],
         "responses" : {
           "200" : {
@@ -233,12 +232,11 @@
         "summary" : "Delete a document",
         "operationId" : "deleteDocument",
         "parameters" : [ {
-          "in" : "body",
-          "name" : "document",
-          "description" : "The document to delete",
-          "schema" : {
-            "$ref" : "#/definitions/RQMDocument"
-          }
+          "in" : "query",
+          "name" : "documentId",
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The document to delete"
         } ],
         "responses" : {
           "200" : {
@@ -283,16 +281,16 @@
           }
         }, {
           "in" : "query",
-          "name" : "aboveId",
+          "name" : "aboveRank",
           "type" : "integer",
           "format" : "int64",
-          "description" : "The element above"
+          "description" : "The rank of the element above"
         }, {
           "in" : "query",
-          "name" : "belowId",
+          "name" : "belowRank",
           "type" : "integer",
           "format" : "int64",
-          "description" : "The element below"
+          "description" : "The rank of the element below"
         } ],
         "responses" : {
           "200" : {
@@ -341,12 +339,11 @@
         "summary" : "Delete an element",
         "operationId" : "deleteElement",
         "parameters" : [ {
-          "in" : "body",
-          "name" : "element",
-          "description" : "The element to update",
-          "schema" : {
-            "$ref" : "#/definitions/RQMElement"
-          }
+          "in" : "query",
+          "name" : "elementId",
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The element to delete"
         } ],
         "responses" : {
           "200" : {
