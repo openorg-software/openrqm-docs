@@ -282,14 +282,12 @@
         }, {
           "in" : "query",
           "name" : "aboveRank",
-          "type" : "integer",
-          "format" : "int64",
+          "type" : "string",
           "description" : "The rank of the element above"
         }, {
           "in" : "query",
           "name" : "belowRank",
-          "type" : "integer",
-          "format" : "int64",
+          "type" : "string",
           "description" : "The rank of the element below"
         } ],
         "responses" : {
