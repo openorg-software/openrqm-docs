@@ -152,6 +152,26 @@
         }
       }
     },
+    "/export" : {
+      "get" : {
+        "tags" : [ "document" ],
+        "summary" : "Export a document as PDF",
+        "operationId" : "exportDocument",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "documentId",
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The document to export"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Document successfully exportet"
+          }
+        },
+        "produces" : [ "application/pdf" ]
+      }
+    },
     "/document" : {
       "get" : {
         "tags" : [ "document" ],
