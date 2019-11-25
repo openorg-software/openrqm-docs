@@ -166,7 +166,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Document successfully exportet",
+            "description" : "Document successfully exported",
             "schema" : {
               "type" : "file"
             }
