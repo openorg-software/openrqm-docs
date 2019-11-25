@@ -275,7 +275,7 @@
         "operationId" : "getElements",
         "parameters" : [ {
           "in" : "query",
-          "name" : "documentid",
+          "name" : "documentId",
           "type" : "integer",
           "format" : "int64",
           "description" : "The document id for which the elements are fetched"
