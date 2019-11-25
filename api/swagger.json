@@ -166,7 +166,10 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Document successfully exportet"
+            "description" : "Document successfully exportet",
+            "schema" : {
+              "type" : "file"
+            }
           }
         },
         "produces" : [ "application/pdf" ]
