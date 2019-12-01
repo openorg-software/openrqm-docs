@@ -298,7 +298,7 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "element",
-          "description" : "The element to create, if the element should be created at the highest level, parent shall be null",
+          "description" : "The element to create, if the element should be created at the highest level, the parentElementId shall be null",
           "schema" : {
             "$ref" : "#/definitions/RQMElement"
           }
