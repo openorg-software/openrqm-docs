@@ -36,6 +36,21 @@
     "description" : "Everything about types of elements"
   } ],
   "paths" : {
+    "/security" : {
+      "get" : {
+        "tags" : [ "security" ],
+        "summary" : "Login",
+        "operationId" : "login",
+        "responses" : {
+          "200" : {
+            "description" : "User logged in successfully",
+            "schema" : {
+              "$ref" : "#/definitions/RQMWorkspaces"
+            }
+          }
+        }
+      }
+    },
     "/workspaces" : {
       "get" : {
         "tags" : [ "workspaces" ],
@@ -154,7 +169,7 @@
     },
     "/export" : {
       "get" : {
-        "tags" : [ "document" ],
+        "tags" : [ "export" ],
         "summary" : "Export a document as PDF",
         "operationId" : "exportDocument",
         "parameters" : [ {
@@ -373,6 +388,55 @@
         }
       }
     },
+    "/link" : {
+      "post" : {
+        "tags" : [ "link" ],
+        "summary" : "Link an element",
+        "operationId" : "linkElement",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "fromElementId",
+          "description" : "The element that is the source of the link",
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "query",
+          "name" : "toElementId",
+          "description" : "The element that is the target of the link",
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "query",
+          "name" : "linkTypeId",
+          "description" : "The type of the link",
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Linking was successfull",
+            "schema" : {
+              "$ref" : "#/definitions/RQMLink"
+            }
+          }
+        }
+      }
+    },
+    "/linkTypes" : {
+      "get" : {
+        "tags" : [ "linkTypes" ],
+        "summary" : "Get the link types",
+        "operationId" : "getLinkTypes",
+        "responses" : {
+          "200" : {
+            "description" : "LinkTypes successfully fetched",
+            "schema" : {
+              "$ref" : "#/definitions/RQMLinkTypes"
+            }
+          }
+        }
+      }
+    },
     "/elementTypes" : {
       "get" : {
         "tags" : [ "elementTypes" ],
@@ -380,7 +444,7 @@
         "operationId" : "getElementTypes",
         "responses" : {
           "200" : {
-            "description" : "Elements successfully fetched",
+            "description" : "ElementTypes successfully fetched",
             "schema" : {
               "$ref" : "#/definitions/RQMElementTypes"
             }
@@ -528,6 +592,47 @@
           "type" : "integer",
           "format" : "int64"
         }
+      }
+    },
+    "RQMLink" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Id of the link"
+        },
+        "fromElementId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "toElementId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "linkTypeId" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "RQMLinkType" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Id of the link type"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RQMLinkTypes" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/RQMLinkType"
       }
     },
     "RQMElements" : {
