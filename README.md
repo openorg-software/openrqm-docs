@@ -7,6 +7,7 @@ This repository contains the architecture of the OpenRQM (**open** source **r**e
 ## Swagger/OpenAPI Code Generation
 
 Download the OpenAPI generator: https://github.com/OpenAPITools/openapi-generator
+
 E.g.: http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.0/openapi-generator-cli-4.2.0.jar
 
 ### Generate for angular
