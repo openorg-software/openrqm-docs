@@ -14,46 +14,166 @@
     "url" : "https://github.com/openrqm/openrqm-docs"
   },
   "tags" : [ {
-    "name" : "workspaces",
-    "description" : "Operations for multiple workspaces"
+    "name" : "Workspaces",
+    "description" : "Operations for workspaces"
   }, {
-    "name" : "workspace",
-    "description" : "Everything about single requirements"
+    "name" : "Documents",
+    "description" : "Operations about documents"
   }, {
-    "name" : "documents",
-    "description" : "Operations about multiple documents"
+    "name" : "Elements",
+    "description" : "Everything about requirements"
   }, {
-    "name" : "document",
-    "description" : "Operations about single documents"
+    "name" : "User Management",
+    "description" : "Everything about user management"
   }, {
-    "name" : "elements",
-    "description" : "Everything about multiple requirements"
+    "name" : "Links",
+    "description" : "Everything about links between requirements"
   }, {
-    "name" : "element",
-    "description" : "Everything about single requirements"
-  }, {
-    "name" : "elementTypes",
-    "description" : "Everything about types of elements"
+    "name" : "Export",
+    "description" : "Everything about document exports"
   } ],
   "paths" : {
-    "/security" : {
+    "/user" : {
+      "put" : {
+        "tags" : [ "User Management" ],
+        "summary" : "Register",
+        "operationId" : "register",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "userCredential",
+          "required" : true,
+          "description" : "The credentials of the user",
+          "schema" : {
+            "$ref" : "#/definitions/RQMUserCredentials"
+          }
+        }, {
+          "in" : "query",
+          "name" : "name",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "query",
+          "name" : "surname",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "query",
+          "name" : "email",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "query",
+          "name" : "department",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "User registered in successfully",
+            "schema" : {
+              "$ref" : "#/definitions/RQMApiKey"
+            }
+          },
+          "409" : {
+            "description" : "Username already taken"
+          }
+        }
+      },
       "get" : {
-        "tags" : [ "security" ],
+        "tags" : [ "User Management" ],
         "summary" : "Login",
         "operationId" : "login",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "userCredentials",
+          "required" : true,
+          "description" : "The credentials of the user",
+          "schema" : {
+            "$ref" : "#/definitions/RQMUserCredentials"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "User logged in successfully",
             "schema" : {
+              "$ref" : "#/definitions/RQMApiKey"
+            }
+          },
+          "401" : {
+            "description" : "Username or password incorrect"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "User Management" ],
+        "summary" : "Logout",
+        "operationId" : "logout",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "apiKey",
+          "required" : true,
+          "description" : "The API key of the user that should be logged out",
+          "schema" : {
+            "$ref" : "#/definitions/RQMApiKey"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "User logged out successfully"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "User Management" ],
+        "summary" : "Change password",
+        "operationId" : "changePassword",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "userCredentials",
+          "required" : true,
+          "description" : "The credentials of the user",
+          "schema" : {
+            "$ref" : "#/definitions/RQMUserCredentials"
+          }
+        }, {
+          "in" : "query",
+          "name" : "newPasswordHash",
+          "required" : true,
+          "description" : "The SHA512 of the new password",
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "User password changes successfully",
+            "schema" : {
               "$ref" : "#/definitions/RQMWorkspaces"
             }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "User Management" ],
+        "summary" : "Delete user",
+        "operationId" : "deleteUser",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "userCredentials",
+          "required" : true,
+          "description" : "The credentials of the user",
+          "schema" : {
+            "$ref" : "#/definitions/RQMUserCredentials"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "User successfully deleted"
           }
         }
       }
     },
     "/workspaces" : {
       "get" : {
-        "tags" : [ "workspaces" ],
+        "tags" : [ "Workspaces" ],
         "summary" : "Get all workspaces",
         "operationId" : "getWorkspaces",
         "responses" : {
@@ -68,7 +188,7 @@
     },
     "/workspace" : {
       "get" : {
-        "tags" : [ "workspace" ],
+        "tags" : [ "Workspaces" ],
         "summary" : "Get a workspace",
         "operationId" : "getWorkspace",
         "responses" : {
@@ -81,12 +201,13 @@
         }
       },
       "post" : {
-        "tags" : [ "workspace" ],
+        "tags" : [ "Workspaces" ],
         "summary" : "Add a workspace",
         "operationId" : "postWorkspace",
         "parameters" : [ {
           "in" : "body",
           "name" : "workspace",
+          "required" : true,
           "description" : "The workspace to create",
           "schema" : {
             "$ref" : "#/definitions/RQMWorkspace"
@@ -98,31 +219,14 @@
           }
         }
       },
-      "put" : {
-        "tags" : [ "workspace" ],
-        "summary" : "Update a workspace",
-        "operationId" : "putWorkspace",
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "workspace",
-          "description" : "The workspace to update",
-          "schema" : {
-            "$ref" : "#/definitions/RQMWorkspace"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Updating workspace successfull"
-          }
-        }
-      },
       "patch" : {
-        "tags" : [ "workspace" ],
+        "tags" : [ "Workspaces" ],
         "summary" : "Update a workspace",
         "operationId" : "patchWorkspace",
         "parameters" : [ {
           "in" : "body",
           "name" : "workspace",
+          "required" : true,
           "description" : "The workspace to update",
           "schema" : {
             "$ref" : "#/definitions/RQMWorkspace"
@@ -130,17 +234,18 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Updating workspace successfull"
+            "description" : "Updating workspace successful"
           }
         }
       },
       "delete" : {
-        "tags" : [ "workspace" ],
+        "tags" : [ "Workspaces" ],
         "summary" : "Delete a workspace",
         "operationId" : "deleteWorkspace",
         "parameters" : [ {
           "in" : "query",
           "name" : "workspaceId",
+          "required" : true,
           "type" : "integer",
           "format" : "int64",
           "description" : "The workspace to delete"
@@ -154,7 +259,7 @@
     },
     "/documents" : {
       "get" : {
-        "tags" : [ "documents" ],
+        "tags" : [ "Documents" ],
         "summary" : "Get all documents",
         "operationId" : "getDocuments",
         "responses" : {
@@ -167,17 +272,25 @@
         }
       }
     },
-    "/export" : {
+    "/exportPdf" : {
       "get" : {
-        "tags" : [ "export" ],
+        "tags" : [ "Export" ],
         "summary" : "Export a document as PDF",
-        "operationId" : "exportDocument",
+        "operationId" : "exportPdf",
         "parameters" : [ {
           "in" : "query",
           "name" : "documentId",
+          "required" : true,
           "type" : "integer",
           "format" : "int64",
           "description" : "The document to export"
+        }, {
+          "in" : "query",
+          "name" : "templateId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The template to use for the export"
         } ],
         "responses" : {
           "200" : {
@@ -190,14 +303,46 @@
         "produces" : [ "application/pdf" ]
       }
     },
+    "/exportMarkdown" : {
+      "get" : {
+        "tags" : [ "Export" ],
+        "summary" : "Export a document as Markdown",
+        "operationId" : "exportMarkdown",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "documentId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The document to export"
+        }, {
+          "in" : "query",
+          "name" : "templateId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The template to use for the export"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Document successfully exported",
+            "schema" : {
+              "type" : "file"
+            }
+          }
+        },
+        "produces" : [ "text/plain" ]
+      }
+    },
     "/document" : {
       "get" : {
-        "tags" : [ "document" ],
+        "tags" : [ "Documents" ],
         "summary" : "Get a document",
         "operationId" : "getDocument",
         "parameters" : [ {
           "in" : "query",
           "name" : "documentId",
+          "required" : true,
           "type" : "integer",
           "format" : "int64",
           "description" : "The element above"
@@ -212,12 +357,13 @@
         }
       },
       "post" : {
-        "tags" : [ "document" ],
+        "tags" : [ "Documents" ],
         "summary" : "Add a document",
         "operationId" : "postDocument",
         "parameters" : [ {
           "in" : "body",
           "name" : "document",
+          "required" : true,
           "description" : "The document to create",
           "schema" : {
             "$ref" : "#/definitions/RQMDocument"
@@ -229,31 +375,14 @@
           }
         }
       },
-      "put" : {
-        "tags" : [ "document" ],
-        "summary" : "Update a document",
-        "operationId" : "putDocument",
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "document",
-          "description" : "The document to update",
-          "schema" : {
-            "$ref" : "#/definitions/RQMDocument"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Updating document successfull"
-          }
-        }
-      },
       "patch" : {
-        "tags" : [ "document" ],
+        "tags" : [ "Documents" ],
         "summary" : "Update a document",
         "operationId" : "patchDocument",
         "parameters" : [ {
           "in" : "body",
           "name" : "document",
+          "required" : true,
           "description" : "The document to update",
           "schema" : {
             "$ref" : "#/definitions/RQMDocument"
@@ -261,17 +390,18 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Updating document successfull"
+            "description" : "Updating document successful"
           }
         }
       },
       "delete" : {
-        "tags" : [ "document" ],
+        "tags" : [ "Documents" ],
         "summary" : "Delete a document",
         "operationId" : "deleteDocument",
         "parameters" : [ {
           "in" : "query",
           "name" : "documentId",
+          "required" : true,
           "type" : "integer",
           "format" : "int64",
           "description" : "The document to delete"
@@ -285,12 +415,13 @@
     },
     "/elements" : {
       "get" : {
-        "tags" : [ "elements" ],
+        "tags" : [ "Elements" ],
         "summary" : "Get all elements",
         "operationId" : "getElements",
         "parameters" : [ {
           "in" : "query",
           "name" : "documentId",
+          "required" : true,
           "type" : "integer",
           "format" : "int64",
           "description" : "The document id for which the elements are fetched"
@@ -307,11 +438,12 @@
     },
     "/element" : {
       "post" : {
-        "tags" : [ "element" ],
+        "tags" : [ "Elements" ],
         "summary" : "Add an element",
         "operationId" : "postElement",
         "parameters" : [ {
           "in" : "body",
+          "required" : true,
           "name" : "element",
           "description" : "The element to create, if the element should be created at the highest level, the parentElementId shall be null",
           "schema" : {
@@ -320,11 +452,13 @@
         }, {
           "in" : "query",
           "name" : "aboveRank",
+          "required" : true,
           "type" : "string",
           "description" : "The rank of the element above, if no above element exists this shall be set to aaaaaaaaaaaaaaaaaaaa"
         }, {
           "in" : "query",
           "name" : "belowRank",
+          "required" : true,
           "type" : "string",
           "description" : "The rank of the element below, if not above element exists this shall be set to an empty string"
         } ],
@@ -334,31 +468,14 @@
           }
         }
       },
-      "put" : {
-        "tags" : [ "element" ],
-        "summary" : "Update an element",
-        "operationId" : "putElement",
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "element",
-          "description" : "The element to update",
-          "schema" : {
-            "$ref" : "#/definitions/RQMElement"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Updating element successfull"
-          }
-        }
-      },
       "patch" : {
-        "tags" : [ "element" ],
+        "tags" : [ "Elements" ],
         "summary" : "Update an element",
         "operationId" : "patchElement",
         "parameters" : [ {
           "in" : "body",
           "name" : "element",
+          "required" : true,
           "description" : "The element to update",
           "schema" : {
             "$ref" : "#/definitions/RQMElement"
@@ -366,55 +483,59 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Updating element successfull"
+            "description" : "Updating element successful"
           }
         }
       },
       "delete" : {
-        "tags" : [ "element" ],
+        "tags" : [ "Elements" ],
         "summary" : "Delete an element",
         "operationId" : "deleteElement",
         "parameters" : [ {
           "in" : "query",
           "name" : "elementId",
+          "required" : true,
           "type" : "integer",
           "format" : "int64",
           "description" : "The element to delete"
         } ],
         "responses" : {
           "200" : {
-            "description" : "Deleting element successfull"
+            "description" : "Deleting element successful"
           }
         }
       }
     },
     "/link" : {
       "post" : {
-        "tags" : [ "link" ],
+        "tags" : [ "Links" ],
         "summary" : "Link an element",
         "operationId" : "linkElement",
         "parameters" : [ {
           "in" : "query",
           "name" : "fromElementId",
+          "required" : true,
           "description" : "The element that is the source of the link",
           "type" : "integer",
           "format" : "int64"
         }, {
           "in" : "query",
           "name" : "toElementId",
+          "required" : true,
           "description" : "The element that is the target of the link",
           "type" : "integer",
           "format" : "int64"
         }, {
           "in" : "query",
           "name" : "linkTypeId",
+          "required" : true,
           "description" : "The type of the link",
           "type" : "integer",
           "format" : "int64"
         } ],
         "responses" : {
           "200" : {
-            "description" : "Linking was successfull",
+            "description" : "Linking was successful",
             "schema" : {
               "$ref" : "#/definitions/RQMLink"
             }
@@ -424,7 +545,7 @@
     },
     "/linkTypes" : {
       "get" : {
-        "tags" : [ "linkTypes" ],
+        "tags" : [ "Links" ],
         "summary" : "Get the link types",
         "operationId" : "getLinkTypes",
         "responses" : {
@@ -439,7 +560,7 @@
     },
     "/elementTypes" : {
       "get" : {
-        "tags" : [ "elementTypes" ],
+        "tags" : [ "Elements" ],
         "summary" : "Get all element types",
         "operationId" : "getElementTypes",
         "responses" : {
@@ -657,6 +778,21 @@
       "type" : "array",
       "items" : {
         "$ref" : "#/definitions/RQMElementType"
+      }
+    },
+    "RQMApiKey" : {
+      "type" : "string"
+    },
+    "RQMUserCredentials" : {
+      "type" : "object",
+      "properties" : {
+        "username" : {
+          "type" : "string"
+        },
+        "passwordHash" : {
+          "type" : "string",
+          "description" : "Base64 encoded SHA512 of user password"
+        }
       }
     }
   },
