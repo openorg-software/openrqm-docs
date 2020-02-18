@@ -39,13 +39,15 @@
         "summary" : "Register",
         "operationId" : "register",
         "parameters" : [ {
-          "in" : "body",
-          "name" : "userCredential",
+          "in" : "query",
+          "name" : "passwordHash",
           "required" : true,
-          "description" : "The credentials of the user",
-          "schema" : {
-            "$ref" : "#/definitions/RQMUserCredentials"
-          }
+          "type" : "string"
+        }, {
+          "in" : "query",
+          "name" : "email",
+          "required" : true,
+          "type" : "string"
         }, {
           "in" : "query",
           "name" : "name",
@@ -58,11 +60,6 @@
           "type" : "string"
         }, {
           "in" : "query",
-          "name" : "email",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "query",
           "name" : "department",
           "required" : true,
           "type" : "string"
@@ -71,7 +68,7 @@
           "200" : {
             "description" : "User registered in successfully",
             "schema" : {
-              "$ref" : "#/definitions/RQMApiKey"
+              "$ref" : "#/definitions/RQMToken"
             }
           },
           "409" : {
@@ -84,19 +81,21 @@
         "summary" : "Login",
         "operationId" : "login",
         "parameters" : [ {
-          "in" : "body",
-          "name" : "userCredentials",
+          "in" : "query",
+          "name" : "passwordHash",
           "required" : true,
-          "description" : "The credentials of the user",
-          "schema" : {
-            "$ref" : "#/definitions/RQMUserCredentials"
-          }
+          "type" : "string"
+        }, {
+          "in" : "query",
+          "name" : "email",
+          "required" : true,
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
             "description" : "User logged in successfully",
             "schema" : {
-              "$ref" : "#/definitions/RQMApiKey"
+              "$ref" : "#/definitions/RQMToken"
             }
           },
           "401" : {
@@ -110,11 +109,11 @@
         "operationId" : "logout",
         "parameters" : [ {
           "in" : "body",
-          "name" : "apiKey",
+          "name" : "token",
           "required" : true,
-          "description" : "The API key of the user that should be logged out",
+          "description" : "The token of the user that should be logged out",
           "schema" : {
-            "$ref" : "#/definitions/RQMApiKey"
+            "$ref" : "#/definitions/RQMToken"
           }
         } ],
         "responses" : {
@@ -128,13 +127,15 @@
         "summary" : "Change password",
         "operationId" : "changePassword",
         "parameters" : [ {
-          "in" : "body",
-          "name" : "userCredentials",
+          "in" : "query",
+          "name" : "passwordHash",
           "required" : true,
-          "description" : "The credentials of the user",
-          "schema" : {
-            "$ref" : "#/definitions/RQMUserCredentials"
-          }
+          "type" : "string"
+        }, {
+          "in" : "query",
+          "name" : "email",
+          "required" : true,
+          "type" : "string"
         }, {
           "in" : "query",
           "name" : "newPasswordHash",
@@ -156,13 +157,15 @@
         "summary" : "Delete user",
         "operationId" : "deleteUser",
         "parameters" : [ {
-          "in" : "body",
-          "name" : "userCredentials",
+          "in" : "query",
+          "name" : "passwordHash",
           "required" : true,
-          "description" : "The credentials of the user",
-          "schema" : {
-            "$ref" : "#/definitions/RQMUserCredentials"
-          }
+          "type" : "string"
+        }, {
+          "in" : "query",
+          "name" : "email",
+          "required" : true,
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -780,20 +783,8 @@
         "$ref" : "#/definitions/RQMElementType"
       }
     },
-    "RQMApiKey" : {
+    "RQMToken" : {
       "type" : "string"
-    },
-    "RQMUserCredentials" : {
-      "type" : "object",
-      "properties" : {
-        "username" : {
-          "type" : "string"
-        },
-        "passwordHash" : {
-          "type" : "string",
-          "description" : "Base64 encoded SHA512 of user password"
-        }
-      }
     }
   },
   "host" : "virtserver.swaggerhub.com",
