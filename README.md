@@ -8,7 +8,7 @@ This repository contains the architecture of the OpenRQM (**open** source **r**e
 
 Download the OpenAPI generator: https://github.com/OpenAPITools/openapi-generator
 
-E.g.: http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.0/openapi-generator-cli-4.2.0.jar
+E.g.: https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.3/openapi-generator-cli-4.2.3.jar
 
 ### Generate for angular
 
@@ -16,8 +16,13 @@ E.g.: http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2
 - Linux: See azure-pipelines.yml
 
 Prepare for publish in generator output directory:
-- `npm install`
-- `npm run build`
+`
+> cd generated
+> npm install
+> npm run build
+`
 
 Publish in generator output directory:
-- `npm publish dist`
+`
+> npm publish dist
+`
