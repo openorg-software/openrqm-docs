@@ -492,6 +492,24 @@
             "description" : "Creating view successful"
           }
         }
+      },
+      "patch" : {
+        "tags" : [ "Views" ],
+        "summary" : "Update a view",
+        "operationId" : "updateView",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "view",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/RQMView"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Updating view successful"
+          }
+        }
       }
     },
     "/elements" : {
@@ -917,6 +935,10 @@
     "RQMView" : {
       "type" : "object",
       "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
         "documentIds" : {
           "type" : "array",
           "items" : {
@@ -935,7 +957,7 @@
     "RQMElementTypeColor" : {
       "type" : "object",
       "properties" : {
-        "id" : {
+        "elementTypeId" : {
           "type" : "integer",
           "format" : "int64"
         },
