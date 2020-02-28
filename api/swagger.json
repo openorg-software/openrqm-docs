@@ -453,7 +453,7 @@
         }
       }
     },
-    "/document/theme" : {
+    "/document/themes" : {
       "get" : {
         "tags" : [ "Themes" ],
         "summary" : "Get all themes of a document",
@@ -471,6 +471,29 @@
             "description" : "Fetching themes successful",
             "schema" : {
               "$ref" : "#/definitions/RQMThemes"
+            }
+          }
+        }
+      }
+    },
+    "/document/theme" : {
+      "get" : {
+        "tags" : [ "Themes" ],
+        "summary" : "Get a theme",
+        "operationId" : "getTheme",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "themeId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The theme id"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Fetching theme successful",
+            "schema" : {
+              "$ref" : "#/definitions/RQMTheme"
             }
           }
         }
