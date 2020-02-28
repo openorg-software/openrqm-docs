@@ -455,7 +455,7 @@
     },
     "/document/view" : {
       "get" : {
-        "tags" : [ "Documents" ],
+        "tags" : [ "Views" ],
         "summary" : "Get all views of a document",
         "operationId" : "getViews",
         "parameters" : [ {
@@ -472,6 +472,24 @@
             "schema" : {
               "$ref" : "#/definitions/RQMViews"
             }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Views" ],
+        "summary" : "Create a new view",
+        "operationId" : "createView",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "view",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/RQMView"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Creating view successful"
           }
         }
       }
