@@ -453,22 +453,22 @@
         }
       }
     },
-    "/document/view" : {
+    "/document/theme" : {
       "get" : {
-        "tags" : [ "Views" ],
-        "summary" : "Get all views of a document",
-        "operationId" : "getViews",
+        "tags" : [ "Themes" ],
+        "summary" : "Get all themes of a document",
+        "operationId" : "getThemes",
         "parameters" : [ {
           "in" : "query",
           "name" : "documentId",
           "required" : true,
           "type" : "integer",
           "format" : "int64",
-          "description" : "The document id to identify the correct views"
+          "description" : "The document id to identify the correct themes"
         } ],
         "responses" : {
           "200" : {
-            "description" : "Fetching views successful",
+            "description" : "Fetching themes successful",
             "schema" : {
               "$ref" : "#/definitions/RQMThemes"
             }
@@ -476,12 +476,12 @@
         }
       },
       "post" : {
-        "tags" : [ "Views" ],
-        "summary" : "Create a new view",
-        "operationId" : "createView",
+        "tags" : [ "Themes" ],
+        "summary" : "Create a new theme",
+        "operationId" : "createTheme",
         "parameters" : [ {
           "in" : "body",
-          "name" : "view",
+          "name" : "theme",
           "required" : true,
           "schema" : {
             "$ref" : "#/definitions/RQMTheme"
@@ -489,17 +489,17 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Creating view successful"
+            "description" : "Creating theme successful"
           }
         }
       },
       "patch" : {
-        "tags" : [ "Views" ],
-        "summary" : "Update a view",
-        "operationId" : "updateView",
+        "tags" : [ "Themes" ],
+        "summary" : "Update a theme",
+        "operationId" : "updateTheme",
         "parameters" : [ {
           "in" : "body",
-          "name" : "view",
+          "name" : "theme",
           "required" : true,
           "schema" : {
             "$ref" : "#/definitions/RQMTheme"
@@ -507,7 +507,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Updating view successful"
+            "description" : "Updating theme successful"
           }
         }
       }
@@ -940,7 +940,7 @@
           "format" : "int64"
         },
         "documentIds" : {
-          "description" : "The document ids the view can apply to",
+          "description" : "The document ids the theme can apply to",
           "type" : "array",
           "items" : {
             "type" : "integer",
