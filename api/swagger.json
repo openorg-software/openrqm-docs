@@ -470,7 +470,7 @@
           "200" : {
             "description" : "Fetching views successful",
             "schema" : {
-              "$ref" : "#/definitions/RQMViews"
+              "$ref" : "#/definitions/RQMThemes"
             }
           }
         }
@@ -484,7 +484,7 @@
           "name" : "view",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/RQMView"
+            "$ref" : "#/definitions/RQMTheme"
           }
         } ],
         "responses" : {
@@ -502,7 +502,7 @@
           "name" : "view",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/RQMView"
+            "$ref" : "#/definitions/RQMTheme"
           }
         } ],
         "responses" : {
@@ -926,13 +926,13 @@
         }
       }
     },
-    "RQMViews" : {
+    "RQMThemes" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/RQMView"
+        "$ref" : "#/definitions/RQMTheme"
       }
     },
-    "RQMView" : {
+    "RQMTheme" : {
       "type" : "object",
       "properties" : {
         "id" : {
