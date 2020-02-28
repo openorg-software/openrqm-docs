@@ -476,7 +476,7 @@
         }
       }
     },
-    "/document/theme" : {
+    "/theme" : {
       "get" : {
         "tags" : [ "Themes" ],
         "summary" : "Get a theme",
