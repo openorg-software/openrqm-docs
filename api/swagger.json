@@ -940,6 +940,7 @@
           "format" : "int64"
         },
         "documentIds" : {
+          "description" : "The document ids the view can apply to",
           "type" : "array",
           "items" : {
             "type" : "integer",
