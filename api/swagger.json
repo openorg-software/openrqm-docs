@@ -951,6 +951,12 @@
           "items" : {
             "$ref" : "#/definitions/RQMElementTypeColor"
           }
+        },
+        "linkFromHighlightColor" : {
+          "type" : "string"
+        },
+        "linkToHighlightColor" : {
+          "type" : "string"
         }
       }
     },
