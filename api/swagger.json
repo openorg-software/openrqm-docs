@@ -13,6 +13,14 @@
     "description" : "Find out more about OpenRQM",
     "url" : "https://github.com/openrqm/openrqm-docs"
   },
+  "securityDefinitions" : {
+    "APIKeyHeader" : {
+      "type" : "apiKey",
+      "in" : "header",
+      "name" : "token",
+      "description" : "The value of the RQMToken returned from login or register"
+    }
+  },
   "tags" : [ {
     "name" : "User Management",
     "description" : "Everything about user management"
@@ -31,6 +39,9 @@
   }, {
     "name" : "Links",
     "description" : "Everything about links between requirements"
+  }, {
+    "name" : "Themes",
+    "description" : "Everything about themes of documents"
   } ],
   "paths" : {
     "/user/register" : {
@@ -175,6 +186,9 @@
     },
     "/workspaces" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Workspaces" ],
         "summary" : "Get all workspaces",
         "operationId" : "getWorkspaces",
@@ -190,6 +204,9 @@
     },
     "/workspace" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Workspaces" ],
         "summary" : "Get a workspace",
         "operationId" : "getWorkspace",
@@ -211,6 +228,9 @@
         }
       },
       "post" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Workspaces" ],
         "summary" : "Add a workspace",
         "operationId" : "postWorkspace",
@@ -230,6 +250,9 @@
         }
       },
       "patch" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Workspaces" ],
         "summary" : "Update a workspace",
         "operationId" : "patchWorkspace",
@@ -249,6 +272,9 @@
         }
       },
       "delete" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Workspaces" ],
         "summary" : "Delete a workspace",
         "operationId" : "deleteWorkspace",
@@ -269,6 +295,9 @@
     },
     "/documents" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Documents" ],
         "summary" : "Get all documents",
         "operationId" : "getDocuments",
@@ -284,6 +313,9 @@
     },
     "/export/pdf" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Export" ],
         "summary" : "Export a document as PDF",
         "operationId" : "exportPdf",
@@ -315,6 +347,9 @@
     },
     "/export/pdf/templates" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Export" ],
         "summary" : "Get all PDF templates",
         "operationId" : "getPdfTemplates",
@@ -330,6 +365,9 @@
     },
     "/export/markdown" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Export" ],
         "summary" : "Export a document as Markdown",
         "operationId" : "exportMarkdown",
@@ -361,6 +399,9 @@
     },
     "/export/markdown/templates" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Export" ],
         "summary" : "Get all Markdown templates",
         "operationId" : "getMarkdownTemplates",
@@ -376,6 +417,9 @@
     },
     "/document" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Documents" ],
         "summary" : "Get a document",
         "operationId" : "getDocument",
@@ -397,6 +441,9 @@
         }
       },
       "post" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Documents" ],
         "summary" : "Add a document",
         "operationId" : "postDocument",
@@ -416,6 +463,9 @@
         }
       },
       "patch" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Documents" ],
         "summary" : "Update a document",
         "operationId" : "patchDocument",
@@ -435,6 +485,9 @@
         }
       },
       "delete" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Documents" ],
         "summary" : "Delete a document",
         "operationId" : "deleteDocument",
@@ -455,6 +508,9 @@
     },
     "/document/themes" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Themes" ],
         "summary" : "Get all themes of a document",
         "operationId" : "getThemes",
@@ -478,6 +534,9 @@
     },
     "/theme" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Themes" ],
         "summary" : "Get a theme",
         "operationId" : "getTheme",
@@ -499,6 +558,9 @@
         }
       },
       "post" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Themes" ],
         "summary" : "Create a new theme",
         "operationId" : "createTheme",
@@ -517,6 +579,9 @@
         }
       },
       "patch" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Themes" ],
         "summary" : "Update a theme",
         "operationId" : "updateTheme",
@@ -537,6 +602,9 @@
     },
     "/elements" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Elements" ],
         "summary" : "Get all elements",
         "operationId" : "getElements",
@@ -560,6 +628,9 @@
     },
     "/element" : {
       "post" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Elements" ],
         "summary" : "Add an element",
         "operationId" : "postElement",
@@ -591,6 +662,9 @@
         }
       },
       "patch" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Elements" ],
         "summary" : "Update an element",
         "operationId" : "patchElement",
@@ -610,6 +684,9 @@
         }
       },
       "delete" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Elements" ],
         "summary" : "Delete an element",
         "operationId" : "deleteElement",
@@ -628,8 +705,37 @@
         }
       }
     },
+    "/element/links" : {
+      "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
+        "tags" : [ "Elements" ],
+        "summary" : "Get all links of a given element",
+        "operationId" : "getLinksOfElement",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "elementId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The id of the element"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Links successfully fetched",
+            "schema" : {
+              "$ref" : "#/definitions/RQMLinks"
+            }
+          }
+        }
+      }
+    },
     "/link" : {
       "post" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Links" ],
         "summary" : "Link an element",
         "operationId" : "linkElement",
@@ -663,10 +769,34 @@
             }
           }
         }
+      },
+      "delete" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
+        "tags" : [ "Links" ],
+        "summary" : "Delete a link",
+        "operationId" : "deleteLink",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "linkId",
+          "required" : true,
+          "description" : "The id of the link",
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Deleting link was successful"
+          }
+        }
       }
     },
     "/linkTypes" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Links" ],
         "summary" : "Get the link types",
         "operationId" : "getLinkTypes",
@@ -682,6 +812,9 @@
     },
     "/elementTypes" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "Elements" ],
         "summary" : "Get all element types",
         "operationId" : "getElementTypes",
@@ -857,6 +990,12 @@
           "type" : "integer",
           "format" : "int64"
         }
+      }
+    },
+    "RQMLinks" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/RQMLink"
       }
     },
     "RQMLinkType" : {
