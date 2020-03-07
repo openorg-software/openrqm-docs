@@ -64,7 +64,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "User registered in successfully",
+            "description" : "User registered in sucessfully",
             "schema" : {
               "$ref" : "#/definitions/RQMToken"
             }
@@ -161,6 +161,11 @@
       }
     },
     "/user/delete" : {
+      "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ]
+      },
       "delete" : {
         "tags" : [ "User Management" ],
         "summary" : "Delete user",
