@@ -106,6 +106,9 @@
     },
     "/user/logout" : {
       "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
         "tags" : [ "User Management" ],
         "summary" : "Logout",
         "operationId" : "logout",
@@ -161,12 +164,10 @@
       }
     },
     "/user/delete" : {
-      "get" : {
+      "delete" : {
         "security" : [ {
           "APIKeyHeader" : [ ]
-        } ]
-      },
-      "delete" : {
+        } ],
         "tags" : [ "User Management" ],
         "summary" : "Delete user",
         "operationId" : "deleteUser",
