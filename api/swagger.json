@@ -1053,14 +1053,14 @@
         }
       }
     },
-    "/element/links" : {
+    "/element/inlinks" : {
       "get" : {
         "security" : [ {
           "APIKeyHeader" : [ ]
         } ],
         "tags" : [ "Elements" ],
         "summary" : "Get all links of a given element",
-        "operationId" : "getLinksOfElement",
+        "operationId" : "getIncomingLinksOfElement",
         "parameters" : [ {
           "in" : "query",
           "name" : "elementId",
@@ -1071,7 +1071,33 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Links successfully fetched",
+            "description" : "Incoming links successfully fetched",
+            "schema" : {
+              "$ref" : "#/definitions/RQMLinks"
+            }
+          }
+        }
+      }
+    },
+    "/element/outlinks" : {
+      "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
+        "tags" : [ "Elements" ],
+        "summary" : "Get all links of a given element",
+        "operationId" : "getOutgoingLinksOfElement",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "elementId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The id of the element"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Outgoing links successfully fetched",
             "schema" : {
               "$ref" : "#/definitions/RQMLinks"
             }
