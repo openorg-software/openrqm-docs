@@ -222,6 +222,13 @@
         "tags" : [ "Access Groups" ],
         "summary" : "Get a specific access group",
         "operationId" : "getAccessgroup",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "accessGroupId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
         "responses" : {
           "200" : {
             "description" : "Access groups fetched sucessfully",
@@ -302,14 +309,25 @@
         "security" : [ {
           "APIKeyHeader" : [ ]
         } ],
-        "tags" : [ "User Access" ],
+        "tags" : [ "Access Groups" ],
         "summary" : "Get all users of a given access group",
         "operationId" : "getUsersOfAccessGroup",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "accessGroupId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
         "responses" : {
           "200" : {
             "description" : "All users were fetched sucessfully",
             "schema" : {
-              "$ref" : "#/definitions/RQMAccessGroupUsers"
+              "type" : "array",
+              "items" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
             }
           }
         }
@@ -318,15 +336,21 @@
         "security" : [ {
           "APIKeyHeader" : [ ]
         } ],
-        "tags" : [ "User Access" ],
+        "tags" : [ "Access Groups" ],
         "summary" : "Add a user to an access group",
         "operationId" : "addUserToAccessGroup",
         "parameters" : [ {
-          "in" : "body",
-          "name" : "user",
-          "schema" : {
-            "$ref" : "#/definitions/RQMAccessGroupUser"
-          }
+          "in" : "query",
+          "name" : "accessGroupId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "query",
+          "name" : "userId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
         } ],
         "responses" : {
           "200" : {
@@ -334,39 +358,25 @@
           }
         }
       },
-      "patch" : {
-        "security" : [ {
-          "APIKeyHeader" : [ ]
-        } ],
-        "tags" : [ "User Access" ],
-        "summary" : "Update a user of an access group",
-        "operationId" : "patchUserOfAccessGroup",
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "user",
-          "schema" : {
-            "$ref" : "#/definitions/RQMAccessGroupUser"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Updating user of access groups uccessful"
-          }
-        }
-      },
       "delete" : {
         "security" : [ {
           "APIKeyHeader" : [ ]
         } ],
-        "tags" : [ "User Access" ],
+        "tags" : [ "Access Groups" ],
         "summary" : "Delete a user of an access group",
         "operationId" : "deleteUserOfAccessGroup",
         "parameters" : [ {
-          "in" : "body",
-          "name" : "user",
-          "schema" : {
-            "$ref" : "#/definitions/RQMAccessGroupUser"
-          }
+          "in" : "query",
+          "name" : "accessGroupId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "query",
+          "name" : "userId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
         } ],
         "responses" : {
           "200" : {
@@ -401,6 +411,13 @@
         "tags" : [ "Workspaces" ],
         "summary" : "Get all access groups of a given workspace",
         "operationId" : "getAccessGroupsOfWorkspace",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "workspaceId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
         "responses" : {
           "200" : {
             "description" : "All access groups were fetched sucessfully",
@@ -418,10 +435,16 @@
         "summary" : "Add an access group to a workspace",
         "operationId" : "addAccessGroupToWorkspace",
         "parameters" : [ {
+          "in" : "query",
+          "name" : "workspaceId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
           "in" : "body",
           "name" : "accessGroup",
           "schema" : {
-            "$ref" : "#/definitions/RQMAccessGroup"
+            "$ref" : "#/definitions/RQMWorkspaceAccessgroup"
           }
         } ],
         "responses" : {
@@ -438,10 +461,16 @@
         "summary" : "Update an access group of a workspace",
         "operationId" : "patchAccessGroupOfWorkspace",
         "parameters" : [ {
+          "in" : "query",
+          "name" : "workspaceId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
           "in" : "body",
           "name" : "accessGroup",
           "schema" : {
-            "$ref" : "#/definitions/RQMAccessGroup"
+            "$ref" : "#/definitions/RQMWorkspaceAccessgroup"
           }
         } ],
         "responses" : {
@@ -458,11 +487,17 @@
         "summary" : "Delete a workspace",
         "operationId" : "deleteAccessGroupOfWorkspace",
         "parameters" : [ {
-          "in" : "body",
-          "name" : "accessGroup",
-          "schema" : {
-            "$ref" : "#/definitions/RQMAccessGroup"
-          },
+          "in" : "query",
+          "name" : "workspaceId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "query",
+          "name" : "accessGroupId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
           "description" : "The access group to delete"
         } ],
         "responses" : {
@@ -477,9 +512,16 @@
         "security" : [ {
           "APIKeyHeader" : [ ]
         } ],
-        "tags" : [ "User Access" ],
+        "tags" : [ "Workspaces" ],
         "summary" : "Get all users of a given workspace",
         "operationId" : "getUsersOfWorkspace",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "workspaceId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
         "responses" : {
           "200" : {
             "description" : "All users were fetched sucessfully",
@@ -493,10 +535,16 @@
         "security" : [ {
           "APIKeyHeader" : [ ]
         } ],
-        "tags" : [ "User Access" ],
+        "tags" : [ "Workspaces" ],
         "summary" : "Add a user to a workspace",
         "operationId" : "addUserToWorkspace",
         "parameters" : [ {
+          "in" : "query",
+          "name" : "workspaceId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
           "in" : "body",
           "name" : "user",
           "schema" : {
@@ -513,10 +561,16 @@
         "security" : [ {
           "APIKeyHeader" : [ ]
         } ],
-        "tags" : [ "User Access" ],
+        "tags" : [ "Workspaces" ],
         "summary" : "Update a user of a workspace",
         "operationId" : "patchUserOfWorkspace",
         "parameters" : [ {
+          "in" : "query",
+          "name" : "workspaceId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
           "in" : "body",
           "name" : "user",
           "schema" : {
@@ -533,15 +587,21 @@
         "security" : [ {
           "APIKeyHeader" : [ ]
         } ],
-        "tags" : [ "User Access" ],
+        "tags" : [ "Workspaces" ],
         "summary" : "Delete a user of a workspace",
         "operationId" : "deleteUserOfWorkspace",
         "parameters" : [ {
-          "in" : "body",
-          "name" : "user",
-          "schema" : {
-            "$ref" : "#/definitions/RQMWorkspaceUser"
-          }
+          "in" : "query",
+          "name" : "workspaceId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "query",
+          "name" : "userId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
         } ],
         "responses" : {
           "200" : {
@@ -861,7 +921,7 @@
         } ],
         "tags" : [ "Themes" ],
         "summary" : "Get all themes of a document",
-        "operationId" : "getThemes",
+        "operationId" : "getThemesOfDocument",
         "parameters" : [ {
           "in" : "query",
           "name" : "documentId",
@@ -1480,29 +1540,6 @@
         }
       }
     },
-    "RQMAccessGroupUsers" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/RQMAccessGroupUser"
-      }
-    },
-    "RQMAccessGroupUser" : {
-      "type" : "object",
-      "properties" : {
-        "workspaceId" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "userId" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "permissions" : {
-          "type" : "integer",
-          "format" : "int64"
-        }
-      }
-    },
     "RQMWorkspaceAccessgroups" : {
       "type" : "array",
       "items" : {
@@ -1512,10 +1549,6 @@
     "RQMWorkspaceAccessgroup" : {
       "type" : "object",
       "properties" : {
-        "workspaceId" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
         "accessGroupId" : {
           "type" : "integer",
           "format" : "int64"
@@ -1535,10 +1568,6 @@
     "RQMWorkspaceUser" : {
       "type" : "object",
       "properties" : {
-        "workspaceId" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
         "userId" : {
           "type" : "integer",
           "format" : "int64"
