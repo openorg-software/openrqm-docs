@@ -110,6 +110,31 @@
         }
       }
     },
+    "/user/info" : {
+      "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
+        "tags" : [ "User Management" ],
+        "summary" : "Get user info",
+        "operationId" : "getInfo",
+        "parameters" : [ {
+          "in" : "header",
+          "name" : "id",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "User logged out successfully",
+            "schema" : {
+              "$ref" : "#/definitions/RQMUser"
+            }
+          }
+        }
+      }
+    },
     "/user/logout" : {
       "get" : {
         "security" : [ {
