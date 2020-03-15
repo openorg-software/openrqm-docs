@@ -116,7 +116,7 @@
           "APIKeyHeader" : [ ]
         } ],
         "tags" : [ "User Management" ],
-        "summary" : "Get user info",
+        "summary" : "Get info of user",
         "operationId" : "getInfo",
         "parameters" : [ {
           "in" : "header",
@@ -127,7 +127,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "User logged out successfully",
+            "description" : "Get user info successfully",
             "schema" : {
               "$ref" : "#/definitions/RQMUser"
             }
