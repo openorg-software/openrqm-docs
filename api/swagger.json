@@ -350,8 +350,9 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "type" : "integer",
-                "format" : "int64"
+                "schema" : {
+                  "$ref" : "#/definitions/RQMUser"
+                }
               }
             }
           }
