@@ -1615,14 +1615,6 @@
           "type" : "integer",
           "format" : "int64"
         },
-        "documentIds" : {
-          "description" : "The document ids the theme can apply to",
-          "type" : "array",
-          "items" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        },
         "elementTypeColors" : {
           "type" : "array",
           "items" : {
