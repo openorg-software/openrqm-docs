@@ -350,9 +350,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "schema" : {
-                  "$ref" : "#/definitions/RQMUser"
-                }
+                "$ref" : "#/definitions/RQMUser"
               }
             }
           }
