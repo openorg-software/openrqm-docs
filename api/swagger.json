@@ -1032,6 +1032,31 @@
         }
       }
     },
+    "/theme/elementTypeColors" : {
+      "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
+        "tags" : [ "Themes" ],
+        "summary" : "Get all element type colors of a theme",
+        "operationId" : "getElementTypeColorsOfTheme",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "themeId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Get ElementTypeColors successful",
+            "schema" : {
+              "$ref" : "#/definitions/RQMElementTypeColor"
+            }
+          }
+        }
+      }
+    },
     "/elements" : {
       "get" : {
         "security" : [ {
@@ -1615,12 +1640,6 @@
           "type" : "integer",
           "format" : "int64"
         },
-        "elementTypeColors" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/RQMElementTypeColor"
-          }
-        },
         "linkFromHighlightColor" : {
           "type" : "string"
         },
@@ -1632,6 +1651,10 @@
     "RQMElementTypeColor" : {
       "type" : "object",
       "properties" : {
+        "themeId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
         "elementTypeId" : {
           "type" : "integer",
           "format" : "int64"
