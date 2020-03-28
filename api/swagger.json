@@ -1051,7 +1051,10 @@
           "200" : {
             "description" : "Get ElementTypeColors successful",
             "schema" : {
-              "$ref" : "#/definitions/RQMElementTypeColor"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMElementTypeColor"
+              }
             }
           }
         }
