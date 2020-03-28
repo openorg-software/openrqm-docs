@@ -1304,29 +1304,14 @@
           "APIKeyHeader" : [ ]
         } ],
         "tags" : [ "Links" ],
-        "summary" : "Link an element",
+        "summary" : "Link two elements",
         "operationId" : "linkElement",
         "parameters" : [ {
-          "in" : "query",
-          "name" : "fromElementId",
-          "required" : true,
-          "description" : "The element that is the source of the link",
-          "type" : "integer",
-          "format" : "int64"
-        }, {
-          "in" : "query",
-          "name" : "toElementId",
-          "required" : true,
-          "description" : "The element that is the target of the link",
-          "type" : "integer",
-          "format" : "int64"
-        }, {
-          "in" : "query",
-          "name" : "linkTypeId",
-          "required" : true,
-          "description" : "The type of the link",
-          "type" : "integer",
-          "format" : "int64"
+          "in" : "body",
+          "name" : "link",
+          "schema" : {
+            "$ref" : "#/definitions/RQMLink"
+          }
         } ],
         "responses" : {
           "200" : {
