@@ -28,9 +28,6 @@
     "name" : "Access Groups",
     "description" : "Everything about access groups"
   }, {
-    "name" : "User Access",
-    "description" : "Everything about user access"
-  }, {
     "name" : "Workspaces",
     "description" : "Operations for workspaces"
   }, {
@@ -1032,7 +1029,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/RQMLinkDetails"
+                "$ref" : "#/definitions/RQMLink"
               }
             }
           }
@@ -1546,7 +1543,15 @@
           "type" : "integer",
           "format" : "int64"
         },
+        "fromDocumentId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
         "toElementId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "toDocumentId" : {
           "type" : "integer",
           "format" : "int64"
         },
@@ -1566,42 +1571,6 @@
         },
         "name" : {
           "type" : "string"
-        }
-      }
-    },
-    "RQMLinkDetails" : {
-      "type" : "object",
-      "properties" : {
-        "id" : {
-          "type" : "integer",
-          "format" : "int64",
-          "description" : "Id of the link"
-        },
-        "fromElementId" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "fromDocumentShortname" : {
-          "type" : "string"
-        },
-        "fromDocumentId" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "toElementId" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "toDocumentShortname" : {
-          "type" : "string"
-        },
-        "toDocumentId" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "linkTypeId" : {
-          "type" : "integer",
-          "format" : "int64"
         }
       }
     },
@@ -1690,9 +1659,12 @@
     "RQMWorkspaceUser" : {
       "type" : "object",
       "properties" : {
-        "userId" : {
+        "id" : {
           "type" : "integer",
           "format" : "int64"
+        },
+        "email" : {
+          "type" : "string"
         },
         "permissions" : {
           "type" : "integer",
