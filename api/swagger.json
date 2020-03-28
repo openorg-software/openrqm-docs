@@ -350,7 +350,8 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/RQMUser"
+                "type" : "integer",
+                "format" : "int64"
               }
             }
           }
@@ -1085,7 +1086,7 @@
           "name" : "belowRank",
           "required" : true,
           "type" : "string",
-          "description" : "The rank of the element below, if not above element exists this shall be set to an empty string"
+          "description" : "The rank of the element below, if no below element exists this shall be set to an empty string"
         } ],
         "responses" : {
           "200" : {
