@@ -50,6 +50,28 @@
     "description" : "Everything about themes of documents"
   } ],
   "paths" : {
+    "/user" : {
+      "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
+        "tags" : [ "User Management" ],
+        "summary" : "Get all users",
+        "operationId" : "getUsers",
+        "responses" : {
+          "200" : {
+            "description" : "User logged in successfully",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        }
+      }
+    },
     "/user/register" : {
       "post" : {
         "tags" : [ "User Management" ],
