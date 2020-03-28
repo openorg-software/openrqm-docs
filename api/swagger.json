@@ -255,7 +255,10 @@
           "200" : {
             "description" : "All access group were fetched sucessfully",
             "schema" : {
-              "$ref" : "#/definitions/RQMAccessGroups"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMAccessGroup"
+              }
             }
           }
         }
@@ -443,7 +446,10 @@
           "200" : {
             "description" : "All workspaces were fetched sucessfully",
             "schema" : {
-              "$ref" : "#/definitions/RQMWorkspaces"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMWorkspace"
+              }
             }
           }
         }
@@ -468,7 +474,10 @@
           "200" : {
             "description" : "All access groups were fetched sucessfully",
             "schema" : {
-              "$ref" : "#/definitions/RQMWorkspaceAccessgroups"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMWorkspaceAccessgroup"
+              }
             }
           }
         }
@@ -572,7 +581,10 @@
           "200" : {
             "description" : "All users were fetched sucessfully",
             "schema" : {
-              "$ref" : "#/definitions/RQMWorkspaceUsers"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMWorkspaceUser"
+              }
             }
           }
         }
@@ -759,7 +771,10 @@
           "200" : {
             "description" : "Documents sucessfully fetched",
             "schema" : {
-              "$ref" : "#/definitions/RQMDocuments"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMDocument"
+              }
             }
           }
         }
@@ -811,7 +826,10 @@
           "200" : {
             "description" : "PDF templates successfully fetched",
             "schema" : {
-              "$ref" : "#/definitions/RQMTemplates"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMTemplate"
+              }
             }
           }
         }
@@ -863,7 +881,10 @@
           "200" : {
             "description" : "Markdown templates successfully fetched",
             "schema" : {
-              "$ref" : "#/definitions/RQMTemplates"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMTemplate"
+              }
             }
           }
         }
@@ -1134,7 +1155,10 @@
           "200" : {
             "description" : "Elements successfully fetched",
             "schema" : {
-              "$ref" : "#/definitions/RQMElements"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMElement"
+              }
             }
           }
         }
@@ -1239,7 +1263,10 @@
           "200" : {
             "description" : "Incoming links successfully fetched",
             "schema" : {
-              "$ref" : "#/definitions/RQMLinks"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMLink"
+              }
             }
           }
         }
@@ -1265,7 +1292,10 @@
           "200" : {
             "description" : "Outgoing links successfully fetched",
             "schema" : {
-              "$ref" : "#/definitions/RQMLinks"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMLink"
+              }
             }
           }
         }
@@ -1344,7 +1374,10 @@
           "200" : {
             "description" : "LinkTypes successfully fetched",
             "schema" : {
-              "$ref" : "#/definitions/RQMLinkTypes"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMLinkType"
+              }
             }
           }
         }
@@ -1362,7 +1395,10 @@
           "200" : {
             "description" : "ElementTypes successfully fetched",
             "schema" : {
-              "$ref" : "#/definitions/RQMElementTypes"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMElementType"
+              }
             }
           }
         }
@@ -1370,12 +1406,6 @@
     }
   },
   "definitions" : {
-    "RQMWorkspaces" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/RQMWorkspace"
-      }
-    },
     "RQMWorkspace" : {
       "type" : "object",
       "properties" : {
@@ -1402,12 +1432,6 @@
             "$ref" : "#/definitions/RQMDocument"
           }
         }
-      }
-    },
-    "RQMDocuments" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/RQMDocument"
       }
     },
     "RQMDocument" : {
@@ -1532,12 +1556,6 @@
         }
       }
     },
-    "RQMLinks" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/RQMLink"
-      }
-    },
     "RQMLinkType" : {
       "type" : "object",
       "properties" : {
@@ -1549,12 +1567,6 @@
         "name" : {
           "type" : "string"
         }
-      }
-    },
-    "RQMLinkTypes" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/RQMLinkType"
       }
     },
     "RQMLinkDetails" : {
@@ -1593,12 +1605,6 @@
         }
       }
     },
-    "RQMElements" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/RQMElement"
-      }
-    },
     "RQMElementType" : {
       "type" : "object",
       "properties" : {
@@ -1609,12 +1615,6 @@
         "name" : {
           "type" : "string"
         }
-      }
-    },
-    "RQMElementTypes" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/RQMElementType"
       }
     },
     "RQMToken" : {
@@ -1641,12 +1641,6 @@
         }
       }
     },
-    "RQMTemplates" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/RQMTemplate"
-      }
-    },
     "RQMUser" : {
       "type" : "object",
       "properties" : {
@@ -1664,12 +1658,6 @@
         }
       }
     },
-    "RQMAccessGroups" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/RQMAccessGroup"
-      }
-    },
     "RQMAccessGroup" : {
       "type" : "object",
       "properties" : {
@@ -1680,12 +1668,6 @@
         "name" : {
           "type" : "string"
         }
-      }
-    },
-    "RQMWorkspaceAccessgroups" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/RQMWorkspaceAccessgroup"
       }
     },
     "RQMWorkspaceAccessgroup" : {
@@ -1701,12 +1683,6 @@
         }
       }
     },
-    "RQMWorkspaceUsers" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/RQMWorkspaceUser"
-      }
-    },
     "RQMWorkspaceUser" : {
       "type" : "object",
       "properties" : {
@@ -1718,12 +1694,6 @@
           "type" : "integer",
           "format" : "int64"
         }
-      }
-    },
-    "RQMThemes" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/RQMTheme"
       }
     },
     "RQMTheme" : {
