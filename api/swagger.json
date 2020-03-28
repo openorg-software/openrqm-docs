@@ -1644,7 +1644,7 @@
     "RQMWorkspaceUser" : {
       "type" : "object",
       "properties" : {
-        "id" : {
+        "userId" : {
           "type" : "integer",
           "format" : "int64"
         },
