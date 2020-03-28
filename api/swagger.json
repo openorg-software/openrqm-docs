@@ -980,7 +980,10 @@
           "200" : {
             "description" : "Fetching themes successful",
             "schema" : {
-              "$ref" : "#/definitions/RQMThemes"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RQMTheme"
+              }
             }
           }
         }
