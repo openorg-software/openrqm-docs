@@ -1490,7 +1490,21 @@
           "type" : "integer",
           "format" : "int64"
         },
+        "fromDocumentShortname" : {
+          "type" : "string"
+        },
+        "fromDocumentId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
         "toElementId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "toDocumentShortname" : {
+          "type" : "string"
+        },
+        "toDocumentId" : {
           "type" : "integer",
           "format" : "int64"
         },
