@@ -863,7 +863,7 @@
             }
           }
         },
-        "produces" : [ "text/plain" ]
+        "produces" : [ "application/zip" ]
       }
     },
     "/export/markdown/templates" : {
@@ -1532,6 +1532,9 @@
           "type" : "integer",
           "format" : "int64"
         },
+        "fromDocumentShortName" : {
+          "type" : "string"
+        },
         "toElementId" : {
           "type" : "integer",
           "format" : "int64"
@@ -1539,6 +1542,9 @@
         "toDocumentId" : {
           "type" : "integer",
           "format" : "int64"
+        },
+        "toDocumentShortName" : {
+          "type" : "string"
         },
         "linkTypeId" : {
           "type" : "integer",
@@ -1554,7 +1560,10 @@
           "format" : "int64",
           "description" : "Id of the link type"
         },
-        "name" : {
+        "nameTo" : {
+          "type" : "string"
+        },
+        "nameFrom" : {
           "type" : "string"
         }
       }
