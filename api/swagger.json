@@ -789,12 +789,20 @@
         "parameters" : [ {
           "in" : "formData",
           "name" : "upfile",
+          "required" : true,
           "type" : "file",
           "description" : "The file to upload."
+        }, {
+          "in" : "query",
+          "name" : "workspaceId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The workspace for the document"
         } ],
         "responses" : {
           "200" : {
-            "description" : "Document"
+            "description" : "Document successfully imported"
           }
         }
       }
