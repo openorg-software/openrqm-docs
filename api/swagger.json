@@ -34,6 +34,9 @@
     "name" : "Documents",
     "description" : "Operations about documents"
   }, {
+    "name" : "Import",
+    "description" : "Everything about importing documents"
+  }, {
     "name" : "Export",
     "description" : "Everything about document exports"
   }, {
@@ -782,7 +785,7 @@
         "security" : [ {
           "APIKeyHeader" : [ ]
         } ],
-        "tags" : [ "Documents" ],
+        "tags" : [ "Import" ],
         "summary" : "Post document for import",
         "operationId" : "importDocument",
         "consumes" : [ "multipart/form-data" ],
