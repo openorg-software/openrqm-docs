@@ -777,6 +777,55 @@
         }
       }
     },
+    "/import" : {
+      "post" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
+        "tags" : [ "Documents" ],
+        "summary" : "Post document for import",
+        "operationId" : "importDocument",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "in" : "formData",
+          "name" : "upfile",
+          "type" : "file",
+          "description" : "The file to upload."
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Document"
+          }
+        }
+      }
+    },
+    "/export/openrqm" : {
+      "get" : {
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ],
+        "tags" : [ "Export" ],
+        "summary" : "Export a document as OpenRQM Data for import",
+        "operationId" : "exportRaw",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "documentId",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "The document to export"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Document successfully exported",
+            "schema" : {
+              "type" : "file"
+            }
+          }
+        },
+        "produces" : [ "application/zip" ]
+      }
+    },
     "/export/pdf" : {
       "get" : {
         "security" : [ {
