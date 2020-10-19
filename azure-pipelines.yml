@@ -98,7 +98,7 @@ steps:
 
 # Convert the README
 - script: |
-    pandoc -s --columns=100 -F pandoc-plantuml -o ARCHITECTURE.pdf arch/ARCHITECTURE.md
+    pandoc -F pandoc-plantuml -o ARCHITECTURE.pdf arch/ARCHITECTURE.md --template=arch/architecture.template
   displayName: 'pandoc convert'
 
 - script: |
