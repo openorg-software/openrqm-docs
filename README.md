@@ -12,17 +12,20 @@ E.g.: https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.
 
 ### Generate for angular
 
-- Windows: E.g.: `java -jar .\openapi-generator-cli-4.2.0.jar generate -i .\api\swagger.json -g typescript-angular -o .\generated\ -c .\api\angular-config.json`
+- Windows: E.g.: `java -jar .\openapi-generator-cli.jar generate -i .\api\swagger.json -g typescript-angular -o .\generated\ -c .\api\angular-config.json`
 - Linux: See azure-pipelines.yml
 
 Prepare for publish in generator output directory:
-`
+
+```bash
 > cd generated
 > npm install
 > npm run build
-`
+```
 
 Publish in generator output directory:
-`
-> npm publish dist
-`
+```
+> npm login
+> cd dist
+> npm publish .
+```
