@@ -1,0 +1,828 @@
+openapi: 3.0.0
+info:
+  description: |
+    This is the OpenRQM API specification.
+    [OpenRQM Docs - Github](https://github.com/openrqm/openrqm-docs)
+  version: 1.0.1
+  title: OpenRQM
+  license:
+    name: LGPL-2.0-only
+    url: https://spdx.org/licenses/LGPL-2.0-only.html#licenseText
+externalDocs:
+  description: Find out more about OpenRQM
+  url: https://github.com/openrqm/openrqm-docs
+tags:
+  - name: Workspaces
+    description: Operations for workspaces
+  - name: Documents
+    description: Operations about documents
+  - name: Import
+    description: Everything about importing documents
+  - name: Export
+    description: Everything about document exports
+  - name: Elements
+    description: Everything about requirements
+  - name: Links
+    description: Everything about links between requirements
+  - name: Themes
+    description: Everything about themes of documents
+security:
+  - bearerAuth: [] 
+paths:
+  /workspaces:
+    get:
+      tags:
+        - Workspaces
+      summary: Get all workspaces
+      operationId: getWorkspaces
+      responses:
+        '200':
+          description: All workspaces were fetched sucessfully
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RQMWorkspace'
+  /workspace:
+    get:
+      tags:
+        - Workspaces
+      summary: Get a workspace
+      operationId: getWorkspace
+      parameters:
+        - in: query
+          name: workspaceId
+          required: true
+          description: The workspace identifier
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: The workspace was fetched successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RQMWorkspace'
+    post:
+      tags:
+        - Workspaces
+      summary: Add a workspace
+      operationId: postWorkspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RQMWorkspace'
+        description: The workspace to create
+        required: true
+      responses:
+        '200':
+          description: The workspace was created by the backend
+    patch:
+      tags:
+        - Workspaces
+      summary: Update a workspace
+      operationId: patchWorkspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RQMWorkspace'
+        description: The workspace to update
+        required: true
+      responses:
+        '200':
+          description: Updating workspace successful
+    delete:
+      tags:
+        - Workspaces
+      summary: Delete a workspace
+      operationId: deleteWorkspace
+      parameters:
+        - in: query
+          name: workspaceId
+          required: true
+          description: The workspace to delete
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: The workspace was deleted successfully
+  /documents:
+    get:
+      tags:
+        - Documents
+      summary: Get all documents
+      operationId: getDocuments
+      responses:
+        '200':
+          description: Documents sucessfully fetched
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RQMDocument'
+  /import:
+    post:
+      tags:
+        - Import
+      summary: Post document for import
+      operationId: importDocument
+      parameters:
+        - in: query
+          name: workspaceId
+          required: true
+          description: The workspace for the document
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                upfile:
+                  description: The file to upload.
+                  type: string
+                  format: binary
+              required:
+                - upfile
+        required: true
+      responses:
+        '200':
+          description: Document successfully imported
+  /export/openrqm:
+    get:
+      tags:
+        - Export
+      summary: Export a document as OpenRQM Data for import
+      operationId: exportRaw
+      parameters:
+        - in: query
+          name: documentId
+          required: true
+          description: The document to export
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Document successfully exported
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+  /export/pdf:
+    get:
+      tags:
+        - Export
+      summary: Export a document as PDF
+      operationId: exportPdf
+      parameters:
+        - in: query
+          name: documentId
+          required: true
+          description: The document to export
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: templateId
+          required: true
+          description: The template to use for the export
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Document successfully exported
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+  /export/pdf/templates:
+    get:
+      tags:
+        - Export
+      summary: Get all PDF templates
+      operationId: getPdfTemplates
+      responses:
+        '200':
+          description: PDF templates successfully fetched
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RQMTemplate'
+  /export/markdown:
+    get:
+      tags:
+        - Export
+      summary: Export a document as Markdown
+      operationId: exportMarkdown
+      parameters:
+        - in: query
+          name: documentId
+          required: true
+          description: The document to export
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: templateId
+          required: true
+          description: The template to use for the export
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Document successfully exported
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+  /export/markdown/templates:
+    get:
+      tags:
+        - Export
+      summary: Get all Markdown templates
+      operationId: getMarkdownTemplates
+      responses:
+        '200':
+          description: Markdown templates successfully fetched
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RQMTemplate'
+  /document:
+    get:
+      tags:
+        - Documents
+      summary: Get a document
+      operationId: getDocument
+      parameters:
+        - in: query
+          name: documentId
+          required: true
+          description: The document identifier
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Document successfully fetched
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RQMDocument'
+    post:
+      tags:
+        - Documents
+      summary: Add a document
+      operationId: postDocument
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RQMDocument'
+        description: The document to create
+        required: true
+      responses:
+        '200':
+          description: The document created by the backend
+    patch:
+      tags:
+        - Documents
+      summary: Update a document
+      operationId: patchDocument
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RQMDocument'
+        description: The document to update
+        required: true
+      responses:
+        '200':
+          description: Updating document successful
+    delete:
+      tags:
+        - Documents
+      summary: Delete a document
+      operationId: deleteDocument
+      parameters:
+        - in: query
+          name: documentId
+          required: true
+          description: The document to delete
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: The document was deleted successfully
+  /document/themes:
+    get:
+      tags:
+        - Themes
+      summary: Get all themes of a document
+      operationId: getThemesOfDocument
+      parameters:
+        - in: query
+          name: documentId
+          required: true
+          description: The document id to identify the correct themes
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Fetching themes successful
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RQMTheme'
+  /document/links:
+    get:
+      tags:
+        - Documents
+      summary: Get all links of a document
+      operationId: getLinksOfDocument
+      parameters:
+        - in: query
+          name: documentId
+          required: true
+          description: The document id to identify the correct links
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Fetching links successful
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RQMLink'
+  /theme:
+    get:
+      tags:
+        - Themes
+      summary: Get a theme
+      operationId: getTheme
+      parameters:
+        - in: query
+          name: themeId
+          required: true
+          description: The theme id
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Fetching theme successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RQMTheme'
+    post:
+      tags:
+        - Themes
+      summary: Create a new theme
+      operationId: createTheme
+      requestBody:
+        $ref: '#/components/requestBodies/RQMTheme'
+      responses:
+        '200':
+          description: Creating theme successful
+    patch:
+      tags:
+        - Themes
+      summary: Update a theme
+      operationId: updateTheme
+      requestBody:
+        $ref: '#/components/requestBodies/RQMTheme'
+      responses:
+        '200':
+          description: Updating theme successful
+  /theme/elementTypeColors:
+    get:
+      tags:
+        - Themes
+      summary: Get all element type colors of a theme
+      operationId: getElementTypeColorsOfTheme
+      parameters:
+        - in: query
+          name: themeId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Get ElementTypeColors successful
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RQMElementTypeColor'
+  /elements:
+    get:
+      tags:
+        - Elements
+      summary: Get all elements
+      operationId: getElements
+      parameters:
+        - in: query
+          name: documentId
+          required: true
+          description: The document id for which the elements are fetched
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Elements successfully fetched
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RQMElement'
+  /element:
+    post:
+      tags:
+        - Elements
+      summary: Add an element
+      operationId: postElement
+      parameters:
+        - in: query
+          name: aboveRank
+          required: true
+          description: >-
+            The rank of the element above, if no above element exists this shall
+            be set to aaaaaaaaaaaaaaaaaaaa
+          schema:
+            type: string
+        - in: query
+          name: belowRank
+          required: true
+          description: >-
+            The rank of the element below, if no below element exists this shall
+            be set to an empty string
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RQMElement'
+        description: >-
+          The element to create, if the element should be created at the highest
+          level, the parentElementId shall be null
+        required: true
+      responses:
+        '200':
+          description: The element created by the backend
+    patch:
+      tags:
+        - Elements
+      summary: Update an element
+      operationId: patchElement
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RQMElement'
+        description: The element to update
+        required: true
+      responses:
+        '200':
+          description: Updating element successful
+    delete:
+      tags:
+        - Elements
+      summary: Delete an element
+      operationId: deleteElement
+      parameters:
+        - in: query
+          name: elementId
+          required: true
+          description: The element to delete
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Deleting element successful
+  /element/inlinks:
+    get:
+      tags:
+        - Elements
+      summary: Get all links of a given element
+      operationId: getIncomingLinksOfElement
+      parameters:
+        - in: query
+          name: elementId
+          required: true
+          description: The id of the element
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Incoming links successfully fetched
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RQMLink'
+  /element/outlinks:
+    get:
+      tags:
+        - Elements
+      summary: Get all links of a given element
+      operationId: getOutgoingLinksOfElement
+      parameters:
+        - in: query
+          name: elementId
+          required: true
+          description: The id of the element
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Outgoing links successfully fetched
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RQMLink'
+  /link:
+    post:
+      tags:
+        - Links
+      summary: Link two elements
+      operationId: linkElement
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RQMLink'
+      responses:
+        '200':
+          description: Linking was successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RQMLink'
+    delete:
+      tags:
+        - Links
+      summary: Delete a link
+      operationId: deleteLink
+      parameters:
+        - in: query
+          name: linkId
+          required: true
+          description: The id of the link
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Deleting link was successful
+  /linkTypes:
+    get:
+      tags:
+        - Links
+      summary: Get the link types
+      operationId: getLinkTypes
+      responses:
+        '200':
+          description: LinkTypes successfully fetched
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RQMLinkType'
+  /elementTypes:
+    get:
+      tags:
+        - Elements
+      summary: Get all element types
+      operationId: getElementTypes
+      responses:
+        '200':
+          description: ElementTypes successfully fetched
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RQMElementType'
+servers:
+  - url: https://virtserver.swaggerhub.com/OpenRQM/OpenRQM/1.0.0
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  requestBodies:
+    RQMTheme:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RQMTheme'
+      required: true
+  schemas:
+    RQMWorkspace:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        workspaceId:
+          type: integer
+          format: int64
+        workspaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/RQMWorkspace'
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/RQMDocument'
+    RQMDocument:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        workspaceId:
+          type: integer
+          format: int64
+        internalIdentifier:
+          type: integer
+          format: int64
+        externalIdentifier:
+          type: string
+        name:
+          type: string
+        shortName:
+          type: string
+        description:
+          type: string
+        confidentiality:
+          type: string
+        authorId:
+          type: integer
+          format: int64
+        languageId:
+          type: integer
+          format: int64
+        approverId:
+          type: integer
+          format: int64
+        reviewerText:
+          type: string
+        lastModifiedById:
+          type: integer
+          format: int64
+        lastModifiedOn:
+          type: string
+          format: date-time
+        baselineMajor:
+          type: integer
+          format: int64
+        baselineMinor:
+          type: integer
+          format: int64
+        baselineReview:
+          type: integer
+          format: int64
+        previousBaselineId:
+          type: integer
+          format: int64
+    RQMElement:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: >-
+            When creating an element the id is ignored by the backend because it
+            generates one, when updating the element it has to be set
+        documentId:
+          type: integer
+          format: int64
+          description: >-
+            When creating an element the documentId has to be set to assign the
+            requirement to the correct document, it can not be updated.
+        elementTypeId:
+          type: integer
+          format: int64
+        content:
+          type: string
+        rank:
+          type: string
+        parentElementId:
+          type: integer
+          format: int64
+    RQMLink:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Id of the link
+        fromElementId:
+          type: integer
+          format: int64
+        fromDocumentId:
+          type: integer
+          format: int64
+        fromDocumentShortName:
+          type: string
+        toElementId:
+          type: integer
+          format: int64
+        toDocumentId:
+          type: integer
+          format: int64
+        toDocumentShortName:
+          type: string
+        linkTypeId:
+          type: integer
+          format: int64
+    RQMLinkType:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Id of the link type
+        nameTo:
+          type: string
+        nameFrom:
+          type: string
+    RQMElementType:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    RQMTemplate:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    RQMTheme:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        linkFromHighlightColor:
+          type: string
+        linkToHighlightColor:
+          type: string
+    RQMElementTypeColor:
+      type: object
+      properties:
+        themeId:
+          type: integer
+          format: int64
+        elementTypeId:
+          type: integer
+          format: int64
+        colorCodeHex:
+          type: string
